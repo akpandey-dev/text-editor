@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Editor</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#ca93d58c;
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+    border: 5px solid #ca93d58c;
+}
+
+.toolbar{
+    width:100%;
+}
+
+.toolbar-content{
+    display:flex;
+    gap:8px;
+    padding:10px;
+    border-bottom:1px solid #ccc;
+    background:#ca93d55f;
+    align-items: center;
+    justify-content:flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-behavior:smooth;
+}
+
+.toolbar-content::-webkit-scrollbar{
+    display:none;
+}
+
+.toolbar button{
+    flex-shrink:0;
+    padding:8px 12px;
+    border:1px solid #ccc;
+    background:white;
+    cursor:pointer;
+}
+
+.toolbar button:hover{
+    background:#eee;
+}
+
+.editor{
+    flex:1;
+    padding:20px;
+    background:white;
+    outline:none;
+    overflow:auto;
+}
+
+</style>
+</head>
+<body>
+
+<center><h1>Text Editor</h1></center>
+<div class="toolbar" id="toolbar">
+    <div class="toolbar-content" id="toolbar-content">
+        <button onclick="format('bold')"><b>B</b></button>
+        <button onclick="format('italic')"><i>I</i></button>
+        <button onclick="format('underline')"><u>U</u></button>
+        <button onclick="insertCode()">Code</button>
+        <button onclick="saveFile()">Save</button>
+    </div>
+</div>
+
+<div id="editor" class="editor" contenteditable="true">
+
+<h1>Welcome</h1>
+<p>Start typing...</p>
+</div>
+
+<script>
+
+const toolbar = document.getElementById("toolbar-content");
+
+toolbar.addEventListener("wheel", (e) => {
+    e.preventDefault();
+
+    toolbar.scrollLeft += e.deltaY;
+});
+
+const editor = document.getElementById("editor");
+
+function format(command){
+    document.execCommand(command,false,null);
+}
+
+function insertCode(){
+    document.execCommand(
+        "insertHTML",
+        false,
+        "<pre style='background:#222;color:#eee;padding:10px;border-radius:6px;overflow:auto;'><code>// code here</code></pre>"
+    );
+}
+
+function saveFile(){
+
+    const blob = new Blob([editor.innerHTML],{type:"text/html"});
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "document.html";
+    a.click();
+
+    URL.revokeObjectURL(url);
+}
+
+</script>
+
+</body>
+</html>
