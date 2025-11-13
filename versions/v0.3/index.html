@@ -14,11 +14,11 @@
 
 body{
     font-family:Arial,sans-serif;
-    background:#ca93d58c;
+    background:#007bff;
     display:flex;
     flex-direction:column;
     height:100vh;
-    border: 5px solid #ca93d58c;
+    border: 5px solid #007bff;
 }
 
 .toolbar{
@@ -30,7 +30,7 @@ body{
     gap:8px;
     padding:10px;
     border-bottom:1px solid #ccc;
-    background:#ca93d55f;
+    background: #007bff;
     align-items: center;
     justify-content:flex-start;
     overflow-x: auto;
@@ -45,9 +45,10 @@ body{
 .toolbar button{
     flex-shrink:0;
     padding:8px 12px;
-    border:1px solid #ccc;
+    border:3px solid #2b2424;
     background:white;
     cursor:pointer;
+    border-radius: 4px;
 }
 
 .toolbar button:hover{
@@ -74,6 +75,7 @@ body{
         <button onclick="format('underline')"><u>U</u></button>
         <button onclick="insertCode()">Code</button>
         <button onclick="saveFile()">Save</button>
+        <button onclick="clearFormat()">Clear Format</button>
     </div>
 </div>
 
@@ -93,6 +95,14 @@ toolbar.addEventListener("wheel", (e) => {
     toolbar.scrollLeft += e.deltaY;
 });
 
+document.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
+        e.preventDefault();
+        saveFile();
+    }
+});
+
+
 const editor = document.getElementById("editor");
 
 function format(command){
@@ -105,6 +115,10 @@ function insertCode(){
         false,
         "<pre style='background:#222;color:#eee;padding:10px;border-radius:6px;overflow:auto;'><code>// code here</code></pre>"
     );
+}
+
+function clearFormat(){
+    document.execCommand("removeFormat", false, null);
 }
 
 function saveFile(){
@@ -125,3 +139,4 @@ function saveFile(){
 
 </body>
 </html>
+
