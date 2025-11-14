@@ -21,6 +21,11 @@ body{
     border: 5px solid #007bff;
 }
 
+#heading{
+    align-self: center;
+    justify-self: center;
+}
+
 .toolbar{
     width:100%;
 }
@@ -67,7 +72,7 @@ body{
 </head>
 <body>
 
-<center><h1>Text Editor</h1></center>
+<h1 id="heading">Text Editor</h1>
 <div class="toolbar" id="toolbar">
     <div class="toolbar-content" id="toolbar-content">
         <button onclick="format('bold')"><b>B</b></button>
@@ -76,6 +81,7 @@ body{
         <button onclick="insertCode()">Code</button>
         <button onclick="saveFile()">Save</button>
         <button onclick="clearFormat()">Clear Format</button>
+        <button onclick="clearEditor()">Clear</button>
     </div>
 </div>
 
@@ -95,12 +101,6 @@ toolbar.addEventListener("wheel", (e) => {
     toolbar.scrollLeft += e.deltaY;
 });
 
-document.addEventListener("keydown", (e) => {
-    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
-        e.preventDefault();
-        saveFile();
-    }
-});
 
 
 const editor = document.getElementById("editor");
@@ -119,6 +119,10 @@ function insertCode(){
 
 function clearFormat(){
     document.execCommand("removeFormat", false, null);
+}
+
+function clearEditor(){
+    editor.innerHTML = "";
 }
 
 function saveFile(){
