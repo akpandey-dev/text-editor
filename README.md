@@ -20,6 +20,7 @@ This project focuses on simplicity, portability, and direct DOM-based text manip
 - Editor controls:
   - Clear Editor
   - Clear Formatting
+- Different toolbars for Formatting and Controls
 - Export edited content as a standalone HTML file
 - Fully offline and self-contained
 

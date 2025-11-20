@@ -79,9 +79,6 @@ body{
         <button onclick="format('italic')"><i>I</i></button>
         <button onclick="format('underline')"><u>U</u></button>
         <button onclick="insertCode()">Code</button>
-        <button onclick="saveFile()">Save</button>
-        <button onclick="clearFormat()">Clear Format</button>
-        <button onclick="clearEditor()">Clear</button>
     </div>
 </div>
 
@@ -91,9 +88,19 @@ body{
 <p>Start typing...</p>
 </div>
 
+<div class="toolbar" id="toolbar">
+    <div class="toolbar-content" id="toolbar-content-bottom">
+        <button onclick="saveFile()">Save</button>
+        <button onclick="clearFormat()">Clear Format</button>
+        <button onclick="clearEditor()">Clear</button>
+    </div>
+</div>
+
 <script>
 
 const toolbar = document.getElementById("toolbar-content");
+const toolbarBottom = document.getElementById("toolbar-content-bottom");
+
 
 toolbar.addEventListener("wheel", (e) => {
     e.preventDefault();
@@ -101,6 +108,11 @@ toolbar.addEventListener("wheel", (e) => {
     toolbar.scrollLeft += e.deltaY;
 });
 
+toolbarBottom.addEventListener("wheel", (e) => {
+    e.preventDefault();
+
+    toolbarBottom.scrollLeft += e.deltaY;
+});
 
 
 const editor = document.getElementById("editor");
