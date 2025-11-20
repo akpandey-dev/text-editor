@@ -78,7 +78,6 @@ body{
         <button onclick="format('bold')"><b>B</b></button>
         <button onclick="format('italic')"><i>I</i></button>
         <button onclick="format('underline')"><u>U</u></button>
-        <button onclick="insertCode()">Code</button>
     </div>
 </div>
 
@@ -121,13 +120,6 @@ function format(command){
     document.execCommand(command,false,null);
 }
 
-function insertCode(){
-    document.execCommand(
-        "insertHTML",
-        false,
-        "<pre style='background:#222;color:#eee;padding:10px;border-radius:6px;overflow:auto;'><code>// code here</code></pre>"
-    );
-}
 
 function clearFormat(){
     document.execCommand("removeFormat", false, null);

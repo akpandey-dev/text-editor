@@ -16,7 +16,6 @@ This project focuses on simplicity, portability, and direct DOM-based text manip
 - Editable rich-text area using `contenteditable`
 - Text formatting:
   - Bold, Italic, Underline
-  - Inline code formatting(code blocks)
 - Editor controls:
   - Clear Editor
   - Clear Formatting
