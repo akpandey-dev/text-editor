@@ -14,7 +14,7 @@
 
 body{
     font-family:Arial,sans-serif;
-    background:#007bff;
+    background: white;
     display:flex;
     flex-direction:column;
     height:100vh;
@@ -28,19 +28,27 @@ body{
 
 .toolbar{
     width:100%;
+    justify-items: center;
+    margin-bottom: 5%;
+    margin-top: 3%;
+
 }
 
 .toolbar-content{
     display:flex;
     gap:8px;
-    padding:10px;
+    padding:3px;
+    width: 80%;
     border-bottom:1px solid #ccc;
+    border: 1px solid black;
+    border-radius: 4px;
     background: #007bff;
     align-items: center;
     justify-content:flex-start;
     overflow-x: auto;
     scrollbar-width: none;
     scroll-behavior:smooth;
+    background-color: #007bff;
 }
 
 .toolbar-content::-webkit-scrollbar{
@@ -51,7 +59,7 @@ body{
     flex-shrink:0;
     padding:8px 12px;
     border:3px solid #2b2424;
-    background:white;
+    background: white;
     cursor:pointer;
     border-radius: 4px;
 }
@@ -66,6 +74,7 @@ body{
     background:white;
     outline:none;
     overflow:auto;
+    border: 5px solid #007bff;
 }
 
 </style>
