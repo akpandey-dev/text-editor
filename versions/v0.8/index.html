@@ -17,6 +17,7 @@ body{
     background: white;
     display:flex;
     flex-direction:column;
+    align-items: center;
     height:100vh;
     border: 5px solid #007bff;
 }
@@ -69,12 +70,24 @@ body{
 }
 
 .editor{
-    flex:1;
+    flex:0.9;
+    width: 80%;
     padding:20px;
     background:white;
     outline:none;
     overflow:auto;
     border: 5px solid #007bff;
+}
+
+#download-button{
+    position: fixed;
+    bottom: 6px;
+    right: 6px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border:3px solid #2b2424;
+    background: white;
+    cursor:pointer;
 }
 
 </style>
@@ -98,11 +111,12 @@ body{
 
 <div class="toolbar" id="toolbar">
     <div class="toolbar-content" id="toolbar-content-bottom">
-        <button onclick="saveFile()">Save</button>
         <button onclick="clearFormat()">Clear Format</button>
         <button onclick="clearEditor()">Clear</button>
     </div>
 </div>
+
+<button id="download-button" onclick="saveFile()">Save</button>
 
 <script>
 
