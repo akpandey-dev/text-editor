@@ -90,6 +90,36 @@ body{
     cursor:pointer;
 }
 
+    #counterBox {
+      text-align: left;
+      justify-self: center;
+      align-self: center;
+      display: flex;
+    }
+
+    #wordCounter {
+      width: 20vw;
+      align-items: baseline;
+      margin-top: 5%;
+      border:2px solid gray;
+      text-align: center;
+      margin-right: 1vw;
+    }
+
+    #charCounter {
+      width: 20vw;
+      align-items: baseline;
+      margin-top: 5%;
+      border:2px solid gray;
+      text-align: center;
+      margin-left: 1vw;
+    }
+
+    #charCounter::placeholder {
+      font-size: xx-small;
+    }
+
+
 </style>
 </head>
 <body>
@@ -116,12 +146,28 @@ body{
     </div>
 </div>
 
+<div id="counterBox">
+    <input id="wordCounter" placeholder="WORDS HERE " disabled />
+    <input id="charCounter" placeholder=" CHARCATERS  HERE" disabled />
+</div>
+
 <button id="download-button" onclick="saveFile()">Save</button>
 
 <script>
 
+const editor = document.getElementById("editor");
+
 const toolbar = document.getElementById("toolbar-content");
 const toolbarBottom = document.getElementById("toolbar-content-bottom");
+
+const wordOutput = document.getElementById('wordCounter');
+const charOutput = document.getElementById('charCounter');
+
+editor.addEventListener('input', () => {
+  const text = editor.innerText.trim();
+  wordOutput.value = text === "" ? 0 : text.split(/\s+/).length;
+  charOutput.value = text.length;
+});
 
 
 toolbar.addEventListener("wheel", (e) => {
@@ -136,8 +182,6 @@ toolbarBottom.addEventListener("wheel", (e) => {
     toolbarBottom.scrollLeft += e.deltaY;
 });
 
-
-const editor = document.getElementById("editor");
 
 function format(command){
     document.execCommand(command,false,null);
