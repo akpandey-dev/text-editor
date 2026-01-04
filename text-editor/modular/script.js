@@ -8,11 +8,19 @@ const toolbarBottom = document.getElementById("toolbar-content-bottom");
 const wordOutput = document.getElementById('wordCounter');
 const charOutput = document.getElementById('charCounter');
 
-editor.addEventListener('input', () => {
+function counters(){
   const text = editor.innerText.trim();
   wordOutput.value = text === "" ? 0 : text.split(/\s+/).length;
   charOutput.value = text.length;
+}
+
+counters();
+
+editor.addEventListener('input', ()=>{
+    counters();
 });
+
+
 
 
 toolbar.addEventListener("wheel", (e) => {
@@ -28,10 +36,29 @@ toolbarBottom.addEventListener("wheel", (e) => {
 });
 
 
-function format(command){
-    document.execCommand(command,false,null);
-}
+function format(tagName) {
+  const selection = window.getSelection();
+  editor.focus();
 
+  if (selection.rangeCount > 0 && !selection.isCollapsed) {
+    const range = selection.getRangeAt(0);
+    const selectedText = range.extractContents();
+
+    const cleanedText = document.createElement("span");
+    cleanedText.innerHTML = selectedText.textContent;
+
+    const el = document.createElement(tagName);
+    el.textContent = cleanedText.textContent;
+
+    range.insertNode(el);
+    selection.removeAllRanges();
+  } else {
+  const tag = document.createElement(tagName);
+  tag.innerHTML = editor.innerHTML;
+  editor.innerHTML = "";
+  editor.appendChild(tag);
+}
+ }
 
 function clearFormat(){
     document.execCommand("removeFormat", false, null);
