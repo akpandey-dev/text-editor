@@ -28,14 +28,32 @@ This project focuses on simplicity, portability, and direct DOM-based text manip
 
 ## Project Structure
 
-```
-text-editor/
-├─ README.md
-├─ .gitignore
-└─ versions/
-```
 
-All development versions are stored inside the `versions` directory to keep the repository clean and versioned properly.
+### Modular Version
+
+The modular version separates the project into multiple files:
+
+- `index.html`
+- `style.css`
+- `script.js`
+
+Advantages:
+- Easier to maintain
+- Cleaner architecture
+- Better scalability
+- Simpler debugging
+
+---
+
+### Standalone Version
+
+The standalone version contains everything inside a single HTML file.
+
+Advantages:
+- Easy sharing and portability
+- Simple deployment
+- Useful for quick testing
+
 
 ---
 
@@ -43,7 +61,7 @@ All development versions are stored inside the `versions` directory to keep the 
 
 No installation required.
 
-1. Navigate to a version inside the `versions` directory
+1. Navigate to a build inside the `text-editor` directory
 2. Open the HTML file in any modern browser
 3. Start editing immediately
 
@@ -60,3 +78,4 @@ No installation required.
 ## License
 
 This project is open for learning, modification, and experimentation.
+
