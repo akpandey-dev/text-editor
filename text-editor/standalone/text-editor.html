@@ -124,11 +124,12 @@ body{
 <body>
 
 <h1 id="heading">Text Editor</h1>
-<div class="toolbar" id="toolbar">
+<div class="toolbar" id="toolbar-top">
     <div class="toolbar-content" id="toolbar-content">
-        <button onclick="format('b')"><b>B</b></button>
-        <button onclick="format('i')"><i>I</i></button>
-        <button onclick="format('u')"><u>U</u></button>
+        <button type="button" onclick="format('b')"><b>B</b></button>
+        <button type="button" onclick="format('i')"><i>I</i></button>
+        <button type="button" onclick="format('u')"><u>U</u></button>
+        <button type="button" onclick="format('mark')"><mark>A</mark></button>
     </div>
 </div>
 
@@ -138,10 +139,11 @@ body{
 <p>Start typing...</p>
 </div>
 
-<div class="toolbar" id="toolbar">
+<div class="toolbar" id="toolbar-bottom">
     <div class="toolbar-content" id="toolbar-content-bottom">
-        <button onclick="clearFormat()">Clear Format</button>
-        <button onclick="clearEditor()">Clear</button>
+        <button type="button" onclick="clearFormat()">Clear Format</button>
+        <button type="button" onclick="clearEditor()">Clear</button>
+        <button type="button" onclick="backSpaceFun()" class="textNavBtns">⌫</button>
     </div>
 </div>
 
@@ -221,6 +223,55 @@ function clearFormat(){
 
 function clearEditor(){
     editor.innerHTML = "";
+}
+
+
+function backSpaceFun() {
+    editor.focus();
+
+    const selection = window.getSelection();
+
+    if (!selection.rangeCount) return;
+
+    if (!selection.isCollapsed) {
+        document.execCommand("delete");
+        counters();
+        return;
+    }
+
+    selection.modify("extend", "backward", "character");
+
+    if (!selection.isCollapsed) {
+        document.execCommand("delete");
+    }
+
+    counters();
+}
+
+function cleanupEmptyNodes(root) {
+
+    const walker = document.createTreeWalker(
+        root,
+        NodeFilter.SHOW_ELEMENT
+    );
+
+    const toRemove = [];
+
+    while (walker.nextNode()) {
+
+        const node = walker.currentNode;
+
+        if (
+            node !== root &&
+            node.childNodes.length === 0
+        ) {
+            toRemove.push(node);
+        }
+    }
+
+    for (const node of toRemove) {
+        node.remove();
+    }
 }
 
 function saveFile(){

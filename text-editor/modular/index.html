@@ -9,11 +9,12 @@
 <body>
 
 <h1 id="heading">Text Editor</h1>
-<div class="toolbar" id="toolbar">
+<div class="toolbar" id="toolbar-top">
     <div class="toolbar-content" id="toolbar-content">
-        <button onclick="format('b')"><b>B</b></button>
-        <button onclick="format('i')"><i>I</i></button>
-        <button onclick="format('u')"><u>U</u></button>
+        <button type="button" onclick="format('b')"><b>B</b></button>
+        <button type="button" onclick="format('i')"><i>I</i></button>
+        <button type="button" onclick="format('u')"><u>U</u></button>
+        <button type="button" onclick="format('mark')"><mark>A</mark></button>
     </div>
 </div>
 
@@ -23,10 +24,11 @@
 <p>Start typing...</p>
 </div>
 
-<div class="toolbar" id="toolbar">
+<div class="toolbar" id="toolbar-bottom">
     <div class="toolbar-content" id="toolbar-content-bottom">
-        <button onclick="clearFormat()">Clear Format</button>
-        <button onclick="clearEditor()">Clear</button>
+        <button type="button" onclick="clearFormat()">Clear Format</button>
+        <button type="button" onclick="clearEditor()">Clear</button>
+        <button type="button" onclick="backSpaceFun()" class="textNavBtns">⌫</button>
     </div>
 </div>
 

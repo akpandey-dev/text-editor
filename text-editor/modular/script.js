@@ -68,6 +68,55 @@ function clearEditor(){
     editor.innerHTML = "";
 }
 
+
+function backSpaceFun() {
+    editor.focus();
+
+    const selection = window.getSelection();
+
+    if (!selection.rangeCount) return;
+
+    if (!selection.isCollapsed) {
+        document.execCommand("delete");
+        counters();
+        return;
+    }
+
+    selection.modify("extend", "backward", "character");
+
+    if (!selection.isCollapsed) {
+        document.execCommand("delete");
+    }
+
+    counters();
+}
+
+function cleanupEmptyNodes(root) {
+
+    const walker = document.createTreeWalker(
+        root,
+        NodeFilter.SHOW_ELEMENT
+    );
+
+    const toRemove = [];
+
+    while (walker.nextNode()) {
+
+        const node = walker.currentNode;
+
+        if (
+            node !== root &&
+            node.childNodes.length === 0
+        ) {
+            toRemove.push(node);
+        }
+    }
+
+    for (const node of toRemove) {
+        node.remove();
+    }
+}
+
 function saveFile(){
 
     const blob = new Blob([editor.innerHTML],{type:"text/html"});
