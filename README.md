@@ -1,81 +1,92 @@
 # Text Editor
 
-A lightweight, browser-based text editor built using pure HTML, CSS, and JavaScript.  
-It is for quick note-taking and text formatting. Features include bold, italics, underline, and code blocks.
-Save your work instantly as HTML with one click.
-Designed as a compact, dependency-free writing tool with rich-text formatting and offline usability.
+A lightweight browser-based text editor built with pure HTML, CSS, and JavaScript.
 
-This project focuses on simplicity, portability, and direct DOM-based text manipulation without external libraries or frameworks.
+This project was created as a simple and portable writing tool for quick note-taking and basic text formatting directly in the browser. It focuses on simplicity, fast loading, and offline usability without relying on frameworks, libraries, or build tools.
 
-⚠️ Note: This is a client-side editor intended for personal, educational, and experimental use. It does not aim to replace full-scale word processors.
+Whether you want to jot down notes, experiment with rich-text editing, or explore how `contenteditable` works under the hood, this project keeps things straightforward and easy to understand.
+
+> ⚠️ Note: This is a lightweight editor intended for learning, personal use, and experimentation. It is not designed to compete with full-featured word processors.
 
 ---
 
 ## Features
 
-- Editable rich-text area using `contenteditable`
-- Text formatting:
-  - Bold, Italic, Underline
-- Editor controls:
-  - Clear Editor
-  - Clear Formatting
-- Live word and character counter
-- Different toolbars for Formatting and Controls
-- Export edited content as a standalone HTML file
-- Fully offline and self-contained
+* Rich-text editing with `contenteditable`
+* Text formatting options:
+  * **Bold**
+  * *Italic*
+  * Underline
+  * Mark
+* Clear editor contents
+* Remove formatting from selected text
+* Custom backspace key
+* Live word counter
+* Live character counter
+* Separate toolbars for formatting and editor controls
+* Export content as a standalone HTML file
+* Fully client-side and works offline
 
 ---
 
 ## Project Structure
 
-
 ### Modular Version
 
 The modular version separates the project into multiple files:
 
-- `index.html`
-- `style.css`
-- `script.js`
+* `index.html`
+* `style.css`
+* `script.js`
 
-Advantages:
-- Easier to maintain
-- Cleaner architecture
-- Better scalability
-- Simpler debugging
+Benefits:
+
+* Easier maintenance
+* Cleaner code organization
+* Simpler debugging
+* Better scalability for future features
 
 ---
 
 ### Standalone Version
 
-The standalone version contains everything inside a single HTML file.
+The standalone version packages everything into a single HTML file.
 
-Advantages:
-- Easy sharing and portability
-- Simple deployment
-- Useful for quick testing
+Benefits:
 
+* Easy to share
+* No setup required
+* Convenient for quick testing
+* Portable and self-contained
 
 ---
 
 ## Usage
 
-No installation required.
+No installation is required.
 
-1. Navigate to a build inside the `text-editor` directory
-2. Open the HTML file in any modern browser
-3. Start editing immediately
+1. Open a build from the `text-editor` directory
+2. Launch the HTML file in any modern browser
+3. Start typing and formatting your content
 
 ---
 
 ## Technology Stack
 
-- HTML5
-- CSS3
-- Vanilla JavaScript (DOM & Selection API)
+* HTML5
+* CSS3
+* Vanilla JavaScript
+* DOM APIs
+* Selection API
+
+---
+
+## Goals
+
+This project aims to demonstrate how a functional text editor can be built using only browser-native technologies while keeping the codebase small and easy to understand.
 
 ---
 
 ## License
 
 This project is open for learning, modification, and experimentation.
-
