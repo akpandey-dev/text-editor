@@ -20,6 +20,11 @@ Whether you want to jot down notes, experiment with rich-text editing, or explor
   * *Italic*
   * Underline
   * Mark
+* Text alignment options:
+  * Left
+  * Right
+  * Center
+  * Justify
 * Clear editor contents
 * Remove formatting from selected text
 * Custom backspace key

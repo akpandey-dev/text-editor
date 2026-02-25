@@ -71,7 +71,6 @@ function clearEditor(){
 
 function backSpaceFun() {
     editor.focus();
-
     const selection = window.getSelection();
 
     if (!selection.rangeCount) return;
@@ -87,47 +86,73 @@ function backSpaceFun() {
     if (!selection.isCollapsed) {
         document.execCommand("delete");
     }
-
     counters();
 }
 
-function cleanupEmptyNodes(root) {
 
+function cleanupEmptyNodes(root) {
     const walker = document.createTreeWalker(
         root,
         NodeFilter.SHOW_ELEMENT
     );
-
     const toRemove = [];
-
     while (walker.nextNode()) {
-
         const node = walker.currentNode;
-
         if (
             node !== root &&
             node.childNodes.length === 0
         ) {
             toRemove.push(node);
-        }
-    }
-
+        }}
     for (const node of toRemove) {
         node.remove();
     }
 }
 
-function saveFile(){
+function rightAlign() { 
+  editor.style.textAlign = "right";
+}
 
-    const blob = new Blob([editor.innerHTML],{type:"text/html"});
+function leftAlign() {
+  editor.style.textAlign = "left"; 
+}
 
-    const url = URL.createObjectURL(blob);
+function centerAlign() {
+  editor.style.textAlign = "center"; 
+}
 
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "document.html";
-    a.click();
+function justify() {
+  editor.style.textAlign = "justify";
+}
 
-    URL.revokeObjectURL(url);
+function saveFile() {
+  const content = editor.innerHTML;
+  const fullHTML = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Downloaded Content</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          padding: 20px;
+        }
+      </style>
+    </head>
+    <body>
+        <div style="text-align:${editor.style.textAlign}">
+            ${editor.innerHTML}
+        </div></body>
+    </html>
+  `;
+
+  const blob = new Blob([fullHTML], { type: "text/html" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "new.html";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
