@@ -129,14 +129,17 @@ body{
         <button type="button" onclick="format('b')"><b>B</b></button>
         <button type="button" onclick="format('i')"><i>I</i></button>
         <button type="button" onclick="format('u')"><u>U</u></button>
+        <button type="button" onclick="format('s')"><s>A</s></button>
         <button type="button" onclick="format('mark')"><mark>A</mark></button>
+        <button type="button" onclick="format('code')"><code>A</code></button>
+        <button type="button" onclick="format('sup')"><sup>A</sup></button>
+        <button type="button" onclick="format('sub')"><sub>A</sub></button>
     </div>
 </div>
 
 <div id="editor" class="editor" contenteditable="true">
-
-<h1>Welcome</h1>
-<p>Start typing...</p>
+<b>Welcome</b><br>
+<p>Start Typing</p>
 </div>
 
 <div class="toolbar" id="toolbar-bottom">
@@ -223,10 +226,17 @@ function format(tagName) {
 
 function clearFormat(){
     document.execCommand("removeFormat", false, null);
+
+    editor.innerHTML = editor.innerHTML
+    .replace(/<(\/)?(b|i|u|s|code|mark|sup|sub|span)>/gi, '');  // Fallback safety for tags like mark
+    editor.style.textAlign = "left" ;
 }
 
 function clearEditor(){
-    editor.innerHTML = "";
+    let confirmation = confirm("Are you sure? This is not reversible.")
+    if (confirmation){
+      editor.innerHTML = "";
+    }
 }
 
 

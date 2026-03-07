@@ -62,10 +62,17 @@ function format(tagName) {
 
 function clearFormat(){
     document.execCommand("removeFormat", false, null);
+
+    editor.innerHTML = editor.innerHTML
+    .replace(/<(\/)?(b|i|u|s|code|mark|sup|sub|span)>/gi, '');  // Fallback safety for tags like mark
+    editor.style.textAlign = "left" ;
 }
 
 function clearEditor(){
-    editor.innerHTML = "";
+    let confirmation = confirm("Are you sure? This is not reversible.")
+    if (confirmation){
+      editor.innerHTML = "";
+    }
 }
 
 

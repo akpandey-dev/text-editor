@@ -20,6 +20,10 @@ Whether you want to jot down notes, experiment with rich-text editing, or explor
   * *Italic*
   * Underline
   * Mark
+  * Code
+  * Supscript
+  * Subscript
+  * Strikethrough
 * Text alignment options:
   * Left
   * Right
