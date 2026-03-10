@@ -35,6 +35,36 @@ toolbarBottom.addEventListener("wheel", (e) => {
     toolbarBottom.scrollLeft += e.deltaY;
 });
 
+document.getElementById("fontFamily").addEventListener("change", function () {
+  const fam = this.value;
+  const ed = editor;
+  const sel = window.getSelection();
+  ed.focus();
+
+  if (sel.rangeCount > 0 && !sel.isCollapsed) {
+    const rng = sel.getRangeAt(0);
+    const frag = rng.extractContents();
+
+    const sp = document.createElement("span");
+    sp.style.fontFamily = fam;
+    sp.appendChild(frag);
+
+    rng.insertNode(sp);
+    sel.removeAllRanges();
+  } else {
+    ed.querySelectorAll('[style]').forEach(el => {
+    el.style.removeProperty("font-family");
+    if (el.getAttribute("style")?.trim() === "") el.removeAttribute("style");
+  });
+
+  const span = document.createElement("span");
+  span.style.fontFamily = fam;
+  span.innerHTML = ed.innerHTML;
+  ed.innerHTML = "";
+  ed.appendChild(span);
+  ed.focus();
+  }
+});
 
 function format(tagName) {
   const selection = window.getSelection();
@@ -66,10 +96,13 @@ function clearFormat(){
     editor.innerHTML = editor.innerHTML
     .replace(/<(\/)?(b|i|u|s|code|mark|sup|sub|span)>/gi, '');  // Fallback safety for tags like mark
     editor.style.textAlign = "left" ;
+    editor.style.fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`;
+    document.getElementById("fontFamily").value = "inherit";
 }
 
 function clearEditor(){
-    let confirmation = confirm("Are you sure? This is not reversible.")
+    let confirmation = confirm("Are you sure? This can not be undone.")
     if (confirmation){
       editor.innerHTML = "";
     }
