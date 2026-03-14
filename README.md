@@ -15,29 +15,14 @@ Whether you want to jot down notes, experiment with rich-text editing, or explor
 ## Features
 
 * Rich-text editing with `contenteditable`
-* Text formatting options:
-  * **Bold**
-  * *Italic*
-  * Underline
-  * Mark
-  * Code
-  * Supscript
-  * Subscript
-  * Strikethrough
-* Text alignment options:
-  * Left
-  * Right
-  * Center
-  * Justify
-* Font Family
-* Clear editor contents
-* Remove formatting from selected text
-* Custom backspace key
-* Live word counter
-* Live character counter
-* Separate toolbars for formatting and editor controls
-* Export content as a standalone HTML file
-* Fully client-side and works offline
+* Formatting: Bold, Italic, Underline, Mark, Code, Superscript, Subscript, Strikethrough
+* Alignment: Left, Right, Center, Justify
+* Font family selection
+* Clear editor, clear formatting, and custom backspace controls
+* Live word and character counters
+* Dual-toolbar interface
+* Standalone HTML export
+* Fully client-side and offline-capable
 
 ---
 

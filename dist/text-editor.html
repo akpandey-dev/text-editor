@@ -3,8 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A lightweight text editor for quick note-taking, rich-text formatting, and instant HTML export, all running directly in your browser.">
 <title>Text Editor</title>
+
 <style>
+:root{
+  --ui-panel: #e6e4e4;
+  --ui-background: #ffffff;
+  --ui-border: #555;
+  --ui-accent: #007bff;
+
+}
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -13,69 +23,77 @@
 
 body{
     font-family:Arial,sans-serif;
-    background: white;
+    background: var(--ui-background);
     display:flex;
     flex-direction:column;
     align-items: center;
     height:100vh;
-    border: 5px solid #007bff;
+    border: 5px solid var(--ui-accent);
 }
 
-#heading{
-    align-self: center;
-    justify-self: center;
-}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    }
 
-.toolbar{
+.heading-container {
+      text-align: left;
+      align-self: center;
+      align-items: center;
+      justify-items: center;
+      margin: 0;
+    }
+
+.format-tab, .toolbar{
     width:100%;
     justify-items: center;
     margin-bottom: 5px;
     margin-top: 5px;
-
 }
 
-.toolbar-content{
+.format-options, .toolbar-options{
     display:flex;
     gap:8px;
     padding:3px;
     width: 80%;
-    border-bottom:1px solid #ccc;
-    border: 1px solid black;
+    border: 1px solid var(--ui-border);
     border-radius: 4px;
-    background: #007bff;
     align-items: center;
     justify-content:flex-start;
     overflow-x: auto;
     scrollbar-width: none;
     scroll-behavior:smooth;
-    background-color: #007bff;
+    background-color: var(--ui-accent);
 }
 
-.toolbar-content::-webkit-scrollbar{
+.format-tab::-webkit-scrollbar,.toolbar::-webkit-scrollbar {
     display:none;
 }
 
-.toolbar button{
+.toolbar button, .format-tab button {
     flex-shrink:0;
     padding:8px 12px;
-    border:3px solid #2b2424;
-    background: white;
+    border:3px solid var(--ui-border);
+    background-color: var(--ui-panel);
     cursor:pointer;
     border-radius: 4px;
 }
 
-.toolbar button:hover{
-    background:#eee;
+.toolbar button:hover, .format-tab button:hover{
+    background-color:var(--ui-background);
 }
 
 .editor{
-    flex:0.9;
+    flex:1;
     width: 80%;
     padding:20px;
-    background:white;
+    background-color:var(--ui-background);
     outline:none;
     overflow:auto;
-    border: 5px solid #007bff;
+    border: 5px solid var(--ui-accent);
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -85,32 +103,32 @@ body{
     right: 6px;
     aspect-ratio: 1;
     border-radius: 50%;
-    border:3px solid #2b2424;
-    background: white;
+    border:3px solid var(--ui-border);
+    background-color: var(--ui-accent);
     cursor:pointer;
 }
 
-    #counterBox {
+    #counter-box {
       text-align: left;
       justify-self: center;
       align-self: center;
       display: flex;
     }
 
-    #wordCounter {
+    #word-counter {
       width: 20vw;
       align-items: baseline;
       margin-top: 10px;
-      border:2px solid gray;
+      border:2px solid var(--ui-border);
       text-align: center;
       margin-right: 1vw;
     }
 
-    #charCounter {
+    #char-counter {
       width: 20vw;
       align-items: baseline;
       margin-top: 10px;
-      border:2px solid gray;
+      border:2px solid var(--ui-border);
       text-align: center;
       margin-left: 1vw;
     }
@@ -121,26 +139,63 @@ body{
 
       .font-family {
       margin: 10px;
-      background-color: #007bff;
+      background-color: var(--ui-accent);
       border-style: solid;
       padding: 3px;
       text-align: left;
-      justify-self: center;
       align-self: center;
     }
 
     #download-button{
-        background-color: #007bff;
+        background-color: var(--ui-accent);
         padding: 5px;
         border-bottom-right-radius: 0;
+        transition: 0.2s ease-in-out;
     }
+
+#download-button:hover{
+padding: 10px;
+}
+
+
+@media (max-width: 768px){
+    .editor{
+        border-width:5px;
+        border-radius:10px;
+    }
+}
+
+@media (max-width: 500px){
+    .editor{
+        border-radius:8px;
+    }
+}
+
+@media (max-width: 400px){
+    .editor{
+        border-width:3px;
+        border-radius:5px;
+    }
+}
+
+@media (max-width: 300px){
+    .editor{
+        border-width:2px;
+    }
+}
+
 </style>
+
 </head>
 <body>
 
-<h1 id="heading">Text Editor</h1>
-<div class="toolbar" id="toolbar-top">
-    <div class="toolbar-content" id="toolbar-content">
+<div class="container">
+    <div class="heading-container">
+      <h1>Text Editor</h1>
+    </div>
+
+<div class="format-tab" id="format-tab">
+    <div class="format-options" id="format-options">
         <button type="button" onclick="format('b')"><b>B</b></button>
         <button type="button" onclick="format('i')"><i>I</i></button>
         <button type="button" onclick="format('u')"><u>U</u></button>
@@ -153,19 +208,18 @@ body{
 </div>
 
 <div id="editor" class="editor" contenteditable="true">
-<b>Welcome</b><br>
-<p>Start Typing</p>
+    
 </div>
 
-<div class="toolbar" id="toolbar-bottom">
-    <div class="toolbar-content" id="toolbar-content-bottom">
+<div class="toolbar" id="toolbar">
+    <div class="toolbar-options" id="toolbar-options">
         <button type="button" onclick="rightAlign()">➡️</button>
         <button type="button" onclick="leftAlign()">⬅️</button>
         <button type="button" onclick="centerAlign()">⬆️</button>
         <button type="button" onclick="justify()">⬇️</button>
         <button type="button" onclick="clearFormat()">✖️</button>
         <button type="button" onclick="clearEditor()">❌</button>
-        <button type="button" onclick="backSpaceFun()" class="textNavBtns">⌫</button>
+        <button type="button" onclick="backSpaceFun()">⌫</button>
     </div>
 </div>
 
@@ -188,23 +242,23 @@ body{
     </select>
   </div>
 
-<div id="counterBox">
-    <input id="wordCounter" placeholder="WORDS HERE " disabled />
-    <input id="charCounter" placeholder=" CHARCATERS  HERE" disabled />
+<div id="counter-box">
+    <input id="word-counter" placeholder="WORDS HERE" disabled />
+    <input id="char-counter" placeholder="CHARCATERS HERE" disabled />
 </div>
 
 <button id="download-button" onclick="saveFile()">💾</button>
+</div>
 
 <script>
 
-
 const editor = document.getElementById("editor");
 
-const toolbar = document.getElementById("toolbar-content");
-const toolbarBottom = document.getElementById("toolbar-content-bottom");
+const formatTab = document.getElementById("format-options");
+const toolbar = document.getElementById("toolbar-options");
 
-const wordOutput = document.getElementById('wordCounter');
-const charOutput = document.getElementById('charCounter');
+const wordOutput = document.getElementById('word-counter');
+const charOutput = document.getElementById('char-counter');
 
 function counters(){
   const text = editor.innerText.trim();
@@ -218,19 +272,35 @@ editor.addEventListener('input', ()=>{
     counters();
 });
 
+function updateToolbarLayout(el) {
+    if (el.scrollWidth > el.clientWidth) {
+        el.style.justifyContent = "flex-start";
+        el.style.overflowX = "auto";
+    } else {
+        el.style.justifyContent = "center";
+        el.style.overflowX = "hidden";
+    }
+}
+
+function updateLayouts() {
+    updateToolbarLayout(formatTab);
+    updateToolbarLayout(toolbar);
+}
+
+window.addEventListener("resize", updateLayouts);
+updateLayouts();
 
 
+formatTab.addEventListener("wheel", (e) => {
+    e.preventDefault();
+
+    formatTab.scrollLeft += e.deltaY;
+});
 
 toolbar.addEventListener("wheel", (e) => {
     e.preventDefault();
 
     toolbar.scrollLeft += e.deltaY;
-});
-
-toolbarBottom.addEventListener("wheel", (e) => {
-    e.preventDefault();
-
-    toolbarBottom.scrollLeft += e.deltaY;
 });
 
 document.getElementById("fontFamily").addEventListener("change", function () {

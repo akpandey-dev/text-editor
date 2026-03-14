@@ -2,11 +2,11 @@
 
 const editor = document.getElementById("editor");
 
-const toolbar = document.getElementById("toolbar-content");
-const toolbarBottom = document.getElementById("toolbar-content-bottom");
+const formatTab = document.getElementById("format-options");
+const toolbar = document.getElementById("toolbar-options");
 
-const wordOutput = document.getElementById('wordCounter');
-const charOutput = document.getElementById('charCounter');
+const wordOutput = document.getElementById('word-counter');
+const charOutput = document.getElementById('char-counter');
 
 function counters(){
   const text = editor.innerText.trim();
@@ -20,19 +20,35 @@ editor.addEventListener('input', ()=>{
     counters();
 });
 
+function updateToolbarLayout(el) {
+    if (el.scrollWidth > el.clientWidth) {
+        el.style.justifyContent = "flex-start";
+        el.style.overflowX = "auto";
+    } else {
+        el.style.justifyContent = "center";
+        el.style.overflowX = "hidden";
+    }
+}
+
+function updateLayouts() {
+    updateToolbarLayout(formatTab);
+    updateToolbarLayout(toolbar);
+}
+
+window.addEventListener("resize", updateLayouts);
+updateLayouts();
 
 
+formatTab.addEventListener("wheel", (e) => {
+    e.preventDefault();
+
+    formatTab.scrollLeft += e.deltaY;
+});
 
 toolbar.addEventListener("wheel", (e) => {
     e.preventDefault();
 
     toolbar.scrollLeft += e.deltaY;
-});
-
-toolbarBottom.addEventListener("wheel", (e) => {
-    e.preventDefault();
-
-    toolbarBottom.scrollLeft += e.deltaY;
 });
 
 document.getElementById("fontFamily").addEventListener("change", function () {
