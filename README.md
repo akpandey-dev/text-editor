@@ -68,8 +68,11 @@ text-editor/
 │   ├── script.js
 │   └── style.css
 │
-├── dist/                   # Standalone (for users)
+├── dist/                   # Final build (for users)
 │   └── text-editor.html  # Single-file app
+│
+├── scripts/                # Build tools
+│   └── build.py
 │
 ├── README.md
 ├── LICENSE
@@ -78,7 +81,25 @@ text-editor/
 
 ---
 
-## Project Overview
+### Build System
+
+Run:
+
+```
+python scripts/build.py
+```
+
+This will:
+
+* Combine HTML, CSS, and JavaScript
+* Bundle everything into a single file
+* Output the final build into the `dist/` directory
+
+---
+
+---
+
+## Architecture Overview
 
 This project uses two modes:
 
@@ -88,7 +109,7 @@ This project uses two modes:
 * Easy to edit and experiment with
 * Easy to extend
 
-### Standalone Mode
+### Production Mode
 
 * Single HTML file
 * Fully portable
@@ -101,6 +122,7 @@ This project uses two modes:
 * HTML5
 * CSS3
 * Vanilla JavaScript
+* Python (tooling and build script only)
 
 ---
 
@@ -122,11 +144,11 @@ https://akpandey-dev.github.io/text-editor
 ## Contributing
 
 * Open for learning and experimentation
-* Bugs may exist
+* Bugs and logic gaps may exist
 * Improvements are welcome
 
 ---
 
 ## License
 
-Open-source for educational and experimental use.
+This project is open for learning, modification, and experimentation.
