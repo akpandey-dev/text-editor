@@ -125,6 +125,25 @@ function clearEditor(){
 }
 
 
+function lineBreak() {
+  const selection = window.getSelection();
+  if (!selection.rangeCount) return;
+
+  const range = selection.getRangeAt(0);
+
+  if (!editor.contains(range.commonAncestorContainer)) return;
+
+  range.deleteContents();
+  const br = document.createElement("br");
+  range.insertNode(br);
+
+  // Move cyrsor after br
+  range.setStartAfter(br);
+  range.collapse(true);
+  selection.removeAllRanges();
+  selection.addRange(range);
+}
+
 function backSpaceFun() {
     editor.focus();
     const selection = window.getSelection();

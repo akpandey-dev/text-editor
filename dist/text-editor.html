@@ -215,6 +215,7 @@ padding: 10px;
         <button type="button" onclick="leftAlign()">⬅️</button>
         <button type="button" onclick="centerAlign()">⬆️</button>
         <button type="button" onclick="justify()">⬇️</button>
+        <button type="button" onclick="lineBreak()">↩️</button>
         <button type="button" onclick="clearFormat()">✖️</button>
         <button type="button" onclick="clearEditor()">❌</button>
         <button type="button" onclick="backSpaceFun()">⌫</button>
@@ -374,6 +375,25 @@ function clearEditor(){
     }
 }
 
+
+function lineBreak() {
+  const selection = window.getSelection();
+  if (!selection.rangeCount) return;
+
+  const range = selection.getRangeAt(0);
+
+  if (!editor.contains(range.commonAncestorContainer)) return;
+
+  range.deleteContents();
+  const br = document.createElement("br");
+  range.insertNode(br);
+
+  // Move cyrsor after br
+  range.setStartAfter(br);
+  range.collapse(true);
+  selection.removeAllRanges();
+  selection.addRange(range);
+}
 
 function backSpaceFun() {
     editor.focus();
