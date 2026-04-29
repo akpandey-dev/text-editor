@@ -149,6 +149,33 @@ padding: 10px;
 }
 
 
+.font-color-bar {
+      position: absolute;
+      top: 55%;
+      right: 0px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      z-index: 9999;
+      padding: 0px;
+    }
+
+    #color-picker {
+      border-radius: 50%;
+      width: 20px;
+      height: 40px;
+      border-style: none;
+      margin: 0 0.3rem;
+      position: sticky;
+      writing-mode: vertical-lr;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+
+
 @media (max-width: 768px){
     .editor{
         border-width:5px;
