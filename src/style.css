@@ -149,30 +149,40 @@ padding: 10px;
 }
 
 
-.font-color-bar {
-      position: absolute;
-      top: 55%;
-      right: 0px;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      z-index: 9999;
-      padding: 0px;
-    }
+.font-control-bar {
+    position: absolute;
+    top: 55%;
+    right: 0px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 9999;
+    padding: 0px;
+          margin: 0 0.3rem;
+}
 
-    #color-picker {
+.font-control-bar input[type="range"],
+.font-control-bar input[type="color"] {
+    writing-mode: vertical-lr;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+
+    #font-color-changer {
       border-radius: 50%;
       width: 20px;
       height: 40px;
       border-style: none;
-      margin: 0 0.3rem;
-      position: sticky;
-      writing-mode: vertical-lr;
-      cursor: pointer;
-      border: none;
-      outline: none;
     }
+
+    
+    #font-size-changer {
+      transform: rotate(180deg);
+    }
+
 
 
 

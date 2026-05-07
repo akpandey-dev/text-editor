@@ -20,6 +20,7 @@ Whether you want to jot down notes, experiment with rich-text editing, or explor
 * Font Controls:
   * Font family selection
   * Text color picker
+  * Font size picker
 * Clear editor, clear formatting, custom backspace and line break controls
 * Live word and character counters
 * Dual-toolbar interface

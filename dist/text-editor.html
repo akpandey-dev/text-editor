@@ -157,30 +157,40 @@ padding: 10px;
 }
 
 
-.font-color-bar {
-      position: absolute;
-      top: 55%;
-      right: 0px;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      z-index: 9999;
-      padding: 0px;
-    }
+.font-control-bar {
+    position: absolute;
+    top: 55%;
+    right: 0px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 9999;
+    padding: 0px;
+          margin: 0 0.3rem;
+}
 
-    #color-picker {
+.font-control-bar input[type="range"],
+.font-control-bar input[type="color"] {
+    writing-mode: vertical-lr;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+
+    #font-color-changer {
       border-radius: 50%;
       width: 20px;
       height: 40px;
       border-style: none;
-      margin: 0 0.3rem;
-      position: sticky;
-      writing-mode: vertical-lr;
-      cursor: pointer;
-      border: none;
-      outline: none;
     }
+
+    
+    #font-size-changer {
+      transform: rotate(180deg);
+    }
+
 
 
 
@@ -273,8 +283,9 @@ padding: 10px;
     <input id="char-counter" placeholder="CHARCATERS HERE" disabled />
 </div>
 
-  <div class="font-color-bar">
-    <input type="color" title="Font Color" class="font-color-changer" placeholder="Color" id="color-picker" />
+  <div class="font-control-bar">
+    <input type="color" title="Font Color" class="font-color-changer" placeholder="Color" id="font-color-changer" />
+    <input type="range" title="Font Size" class="font-size-changer" placeholder="Font Size" min="8" max="72" value="16" step="1" id="font-size-changer" />
   </div>
 
 <button id="download-button" onclick="saveFile()">💾</button>
@@ -366,7 +377,7 @@ document.getElementById("fontFamily").addEventListener("change", function () {
   }
 });
 
-document.getElementById("color-picker").addEventListener("input", function () {
+document.getElementById("font-color-changer").addEventListener("input", function () {
   const clr = this.value;
   const ed = editor;
   const sel = window.getSelection();
@@ -390,6 +401,37 @@ document.getElementById("color-picker").addEventListener("input", function () {
 
   const span = document.createElement("span");
   span.style.color = clr;
+  span.innerHTML = ed.innerHTML;
+  ed.innerHTML = "";
+  ed.appendChild(span);
+  ed.focus();
+  }
+});
+
+document.getElementById("font-size-changer").addEventListener("input", function () {
+  const clr = this.value + "px";
+  const ed = editor;
+  const sel = window.getSelection();
+  ed.focus();
+
+  if (sel.rangeCount > 0 && !sel.isCollapsed) {
+    const rng = sel.getRangeAt(0);
+    const frag = rng.extractContents();
+
+    const sp = document.createElement("span");
+    sp.style.fontSize = clr;
+    sp.appendChild(frag);
+
+    rng.insertNode(sp);
+    sel.removeAllRanges();
+  } else {
+    ed.querySelectorAll('[style]').forEach(el => {
+    el.style.removeProperty("font-size");
+    if (el.getAttribute("style")?.trim() === "") el.removeAttribute("style");
+  });
+
+  const span = document.createElement("span");
+  span.style.fontSize = clr;
   span.innerHTML = ed.innerHTML;
   ed.innerHTML = "";
   ed.appendChild(span);

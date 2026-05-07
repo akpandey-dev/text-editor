@@ -82,7 +82,7 @@ document.getElementById("fontFamily").addEventListener("change", function () {
   }
 });
 
-document.getElementById("color-picker").addEventListener("input", function () {
+document.getElementById("font-color-changer").addEventListener("input", function () {
   const clr = this.value;
   const ed = editor;
   const sel = window.getSelection();
@@ -106,6 +106,37 @@ document.getElementById("color-picker").addEventListener("input", function () {
 
   const span = document.createElement("span");
   span.style.color = clr;
+  span.innerHTML = ed.innerHTML;
+  ed.innerHTML = "";
+  ed.appendChild(span);
+  ed.focus();
+  }
+});
+
+document.getElementById("font-size-changer").addEventListener("input", function () {
+  const clr = this.value + "px";
+  const ed = editor;
+  const sel = window.getSelection();
+  ed.focus();
+
+  if (sel.rangeCount > 0 && !sel.isCollapsed) {
+    const rng = sel.getRangeAt(0);
+    const frag = rng.extractContents();
+
+    const sp = document.createElement("span");
+    sp.style.fontSize = clr;
+    sp.appendChild(frag);
+
+    rng.insertNode(sp);
+    sel.removeAllRanges();
+  } else {
+    ed.querySelectorAll('[style]').forEach(el => {
+    el.style.removeProperty("font-size");
+    if (el.getAttribute("style")?.trim() === "") el.removeAttribute("style");
+  });
+
+  const span = document.createElement("span");
+  span.style.fontSize = clr;
   span.innerHTML = ed.innerHTML;
   ed.innerHTML = "";
   ed.appendChild(span);
