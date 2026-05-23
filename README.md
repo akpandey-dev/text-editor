@@ -24,6 +24,7 @@ Whether you want to jot down notes, experiment with rich-text editing, or explor
 * Clear editor, clear formatting, custom backspace and line break controls
 * Live word and character counters
 * Dual-toolbar interface
+* Tooltip on every component
 * Standalone HTML export
 * Fully client-side and offline-capable
 

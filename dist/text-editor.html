@@ -229,16 +229,16 @@ padding: 10px;
       <h1>Text Editor</h1>
     </div>
 
-<div class="format-tab" id="format-tab">
+<div class="format-tab" id="format-tab" title="Format Tab">
     <div class="format-options" id="format-options">
-        <button type="button" onclick="format('b')"><b>B</b></button>
-        <button type="button" onclick="format('i')"><i>I</i></button>
-        <button type="button" onclick="format('u')"><u>U</u></button>
-        <button type="button" onclick="format('s')"><s>A</s></button>
-        <button type="button" onclick="format('mark')"><mark>A</mark></button>
-        <button type="button" onclick="format('code')"><code>A</code></button>
-        <button type="button" onclick="format('sup')"><sup>A</sup></button>
-        <button type="button" onclick="format('sub')"><sub>A</sub></button>
+        <button type="button" onclick="format('b')" title="Bold"><b>B</b></button>
+        <button type="button" onclick="format('i')" title="Italics"><i>I</i></button>
+        <button type="button" onclick="format('u')" title="Underline"><u>U</u></button>
+        <button type="button" onclick="format('s')" title="Strikethrough"><s>A</s></button>
+        <button type="button" onclick="format('mark')" title="Mark"><mark>A</mark></button>
+        <button type="button" onclick="format('code')" title="Code"><code>A</code></button>
+        <button type="button" onclick="format('sup')" title="Supscript"><sup>A</sup></button>
+        <button type="button" onclick="format('sub')" title="Subscript"><sub>A</sub></button>
     </div>
 </div>
 
@@ -246,21 +246,21 @@ padding: 10px;
     
 </div>
 
-<div class="toolbar" id="toolbar">
+<div class="toolbar" id="toolbar" title="Toolbar">
     <div class="toolbar-options" id="toolbar-options">
-        <button type="button" onclick="rightAlign()">➡️</button>
-        <button type="button" onclick="leftAlign()">⬅️</button>
-        <button type="button" onclick="centerAlign()">⬆️</button>
-        <button type="button" onclick="justify()">⬇️</button>
-        <button type="button" onclick="lineBreak()">↩️</button>
-        <button type="button" onclick="clearFormat()">✖️</button>
-        <button type="button" onclick="clearEditor()">❌</button>
-        <button type="button" onclick="backSpaceFun()">⌫</button>
+        <button type="button" onclick="rightAlign()" title="Right Align">➡️</button>
+        <button type="button" onclick="leftAlign()" title="Left Align">⬅️</button>
+        <button type="button" onclick="centerAlign()" title="Center Align">⬆️</button>
+        <button type="button" onclick="justify()" title="Justify">⬇️</button>
+        <button type="button" onclick="lineBreak()" title="Line Break">↩️</button>
+        <button type="button" onclick="clearFormat()" title="Clear Formatting">✖️</button>
+        <button type="button" onclick="clearEditor()" title="Clear Editor">❌</button>
+        <button type="button" onclick="backSpaceFun()" title="Backspace">⌫</button>
     </div>
 </div>
 
   <div class="font-family">
-    <select title="Select the font family for the text..." id="fontFamily">
+    <select title="Select font family" id="fontFamily">
       <option value="inherit">Default</option>
       <option value="Arial">Arial</option>
       <option value="Helvetica">Helvetica</option>
@@ -279,8 +279,8 @@ padding: 10px;
   </div>
 
 <div id="counter-box">
-    <input id="word-counter" placeholder="WORDS HERE" disabled />
-    <input id="char-counter" placeholder="CHARCATERS HERE" disabled />
+    <input id="word-counter" placeholder="WORDS HERE" title="Word Counter" disabled />
+    <input id="char-counter" placeholder="CHARCATERS HERE" title="Character Counter" disabled />
 </div>
 
   <div class="font-control-bar">
@@ -288,7 +288,7 @@ padding: 10px;
     <input type="range" title="Font Size" class="font-size-changer" placeholder="Font Size" min="8" max="72" value="16" step="1" id="font-size-changer" />
   </div>
 
-<button id="download-button" onclick="saveFile()">💾</button>
+<button id="download-button" onclick="saveFile()" title="Download as HTML">💾</button>
 </div>
 
 
