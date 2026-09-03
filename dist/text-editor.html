@@ -14,6 +14,7 @@
 --ui-accent: #4f46e5;
 --ui-btn-bg: #eef2f7;
 --ui-text: #1e293b;
+--ui-transparent: rgba(30, 41, 59, 0.18);
 
 --ui-shadow:
 0 2px 4px rgba(0,0,0,.04),
@@ -213,7 +214,142 @@ padding: 10px;
       transform: rotate(180deg);
     }
 
+#settings-icon {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ui-panel);
+    color: var(--ui-text);
+    border: 1px solid var(--ui-border);
+    border-radius: 10px;
+    box-shadow: var(--ui-shadow);
+    cursor: pointer;
+    transition: 0.2s ease;
+}
 
+#settings-icon:hover {
+    background: var(--ui-btn-bg);
+    border-color: var(--ui-border-strong);
+    color: var(--ui-accent);
+}
+
+#settings-icon:active {
+    transform: scale(0.95);
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: var(--ui-transparent);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.settings-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.96);
+    width: min(420px, calc(100vw - 30px));
+    max-height: calc(100vh - 30px);
+    overflow-y: auto;
+    padding: 20px;
+    background: var(--ui-panel);                               
+    color: var(--ui-text);
+    border: 1px solid var(--ui-border);
+    border-radius: 14px;
+    box-shadow: 2px 4px 8px var(--ui-shadow);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.settings-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.settings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--ui-border);
+}
+
+.settings-header h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#settings-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: var(--ui-btn-bg);
+    color: var(--ui-text);
+    border: 1px solid var(--ui-border);
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+#settings-close:hover {
+    background: var(--ui-panel);
+    border-color: var(--ui-border-strong);
+    color: var(--ui-accent);
+}
+
+#settings-close:active {
+    transform: scale(0.95);
+}
+
+.settings-content{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    padding: 2px;
+    gap: 2px;
+}
+
+.settings-option{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 32px;
+    padding: 2px;
+    border: 1px solid var(--ui-panel);
+    transition: 0.3s ease-in-out;
+    border-radius: 8px;
+}
+
+.settings-option:hover{
+    border: 1px solid var(--ui-accent);
+    background-color: var(--ui-accent);
+}
 
 
 @media (max-width: 768px){
@@ -234,13 +370,38 @@ padding: 10px;
         border-width:3px;
         border-radius:5px;
     }
+    .heading-container h1{
+        font-size: x-large;
+    }
+    #settings-icon {
+        right: 6px;
+        top: 6px;
+        padding: 3px;
+    }
 }
 
 @media (max-width: 300px){
     .editor{
         border-width:2px;
     }
+    .heading-container h1{
+        font-size: larger;
+    }
+
 }
+
+@media (max-width: 200px){
+    #settings-icon {
+        right: 0;
+        top: 0;
+        padding: 3px;
+        border-radius: 0;
+        border-bottom-left-radius: 8px;
+    }
+
+}
+
+
 
 </style>
 </head>
@@ -311,7 +472,25 @@ padding: 10px;
   </div>
 
 <button id="download-button" onclick="saveFile()" title="Download as HTML">💾</button>
+
+
+<button type="button" title="Settings" id="settings-icon" aria-label="Settings" aria-expanded="false" aria-controls="settings-panel">
+    ⚙️
+</button>
+<div class="overlay"></div>
+<div class="settings-panel">
+    <div class="settings-header">
+        <h2>Settings</h2>
+        <button type="button" id="settings-close">x</button>
+    </div>
+
+    <div class="settings-content">
+        <div class="settings-option">Setting 1</div>
+        <div class="settings-option">Setting 2</div>
+        <div class="settings-option">Coming soon...</div>
+    </div>
 </div>
+
 
 
 <script>
@@ -610,7 +789,54 @@ function saveFile() {
   document.body.removeChild(link);
 }
 
+const settingsIcon = document.getElementById("settings-icon");
+const settingsPanel = document.querySelector(".settings-panel");
+const settingsOverlay = document.querySelector(".overlay");
+const settingsClose = document.getElementById("settings-close");
 
+
+const settings = {};
+let settingsOpen = false;
+
+function openSettings() {
+    settingsOpen = true;
+
+    settingsPanel.classList.add("active");
+    settingsOverlay.classList.add("active");
+
+    settingsIcon.setAttribute("aria-expanded", "true");
+}
+
+function closeSettings() {
+    settingsOpen = false;
+
+    settingsPanel.classList.remove("active");
+    settingsOverlay.classList.remove("active");
+
+    settingsIcon.setAttribute("aria-expanded", "false");
+}
+
+function toggleSettings() {
+    if (settingsOpen) {
+        closeSettings();
+    } else {
+        openSettings();
+    }
+}
+
+
+settingsIcon.addEventListener("click", toggleSettings);
+
+settingsClose.addEventListener("click", closeSettings);
+
+settingsOverlay.addEventListener("click", closeSettings);
+
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && settingsOpen) {
+        closeSettings();
+    }
+});
 </script>
 
 </body>

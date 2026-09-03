@@ -27,6 +27,10 @@ Whether you want to jot down notes, experiment with rich-text editing, or explor
 * Tooltip on every component
 * Standalone HTML export
 * Fully client-side and offline-capable
+* Settings 
+
+**Upcoming:**
+* Features in settings
 
 ---
 

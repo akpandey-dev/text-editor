@@ -293,3 +293,51 @@ function saveFile() {
   document.body.removeChild(link);
 }
 
+const settingsIcon = document.getElementById("settings-icon");
+const settingsPanel = document.querySelector(".settings-panel");
+const settingsOverlay = document.querySelector(".overlay");
+const settingsClose = document.getElementById("settings-close");
+
+
+const settings = {};
+let settingsOpen = false;
+
+function openSettings() {
+    settingsOpen = true;
+
+    settingsPanel.classList.add("active");
+    settingsOverlay.classList.add("active");
+
+    settingsIcon.setAttribute("aria-expanded", "true");
+}
+
+function closeSettings() {
+    settingsOpen = false;
+
+    settingsPanel.classList.remove("active");
+    settingsOverlay.classList.remove("active");
+
+    settingsIcon.setAttribute("aria-expanded", "false");
+}
+
+function toggleSettings() {
+    if (settingsOpen) {
+        closeSettings();
+    } else {
+        openSettings();
+    }
+}
+
+
+settingsIcon.addEventListener("click", toggleSettings);
+
+settingsClose.addEventListener("click", closeSettings);
+
+settingsOverlay.addEventListener("click", closeSettings);
+
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && settingsOpen) {
+        closeSettings();
+    }
+});
