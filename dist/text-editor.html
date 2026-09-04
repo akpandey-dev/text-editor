@@ -58,7 +58,7 @@ body{
     color: var(--ui-text);
 }
 
-.format-tab, .toolbar{
+.format-toolbar, .toolbar{
     width:100%;
     justify-items: center;
     margin-bottom: 5px;
@@ -81,11 +81,11 @@ body{
     box-shadow:var(--ui-shadow);
 }
 
-.format-tab::-webkit-scrollbar,.toolbar::-webkit-scrollbar {
+.format-toolbar::-webkit-scrollbar,.toolbar::-webkit-scrollbar {
     display:none;
 }
 
-.toolbar button, .format-tab button {
+.toolbar button, .format-toolbar button {
     flex-shrink:0;
     padding:8px 12px;
     border:1px solid var(--ui-border);
@@ -95,7 +95,7 @@ body{
     transition:0.2s ease;
 }
 
-.toolbar button:hover, .format-tab button:hover{
+.toolbar button:hover, .format-toolbar button:hover{
     background-color:var(--ui-panel);
     border-color:var(--ui-border-strong);
 }
@@ -114,7 +114,6 @@ body{
 
 
     #counter-box {
-      text-align: left;
       justify-self: center;
       align-self: center;
       display: flex;
@@ -412,7 +411,7 @@ padding: 10px;
       <h1>Text Editor</h1>
     </div>
 
-<div class="format-tab" id="format-tab" title="Format Tab">
+<div class="format-toolbar" id="format-toolbar" title="Format Toolbar">
     <div class="format-options" id="format-options">
         <button type="button" onclick="format('b')" title="Bold"><b>B</b></button>
         <button type="button" onclick="format('i')" title="Italics"><i>I</i></button>
@@ -491,7 +490,7 @@ padding: 10px;
     </div>
 </div>
 
-
+</div>
 
 <script>
 
