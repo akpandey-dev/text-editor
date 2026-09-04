@@ -2,7 +2,7 @@
 
 const editor = document.getElementById("editor");
 
-const formatTab = document.getElementById("format-options");
+const formatToolbar = document.getElementById("format-options");
 const toolbar = document.getElementById("toolbar-options");
 
 const wordOutput = document.getElementById('word-counter');
@@ -31,7 +31,7 @@ function updateToolbarLayout(el) {
 }
 
 function updateLayouts() {
-    updateToolbarLayout(formatTab);
+    updateToolbarLayout(formatToolbar);
     updateToolbarLayout(toolbar);
 }
 
@@ -39,10 +39,10 @@ window.addEventListener("resize", updateLayouts);
 updateLayouts();
 
 
-formatTab.addEventListener("wheel", (e) => {
+formatToolbar.addEventListener("wheel", (e) => {
     e.preventDefault();
 
-    formatTab.scrollLeft += e.deltaY;
+    formatToolbar.scrollLeft += e.deltaY;
 });
 
 toolbar.addEventListener("wheel", (e) => {
