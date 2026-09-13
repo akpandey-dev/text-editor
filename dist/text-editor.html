@@ -350,6 +350,22 @@ padding: 10px;
     background-color: var(--ui-accent);
 }
 
+.settings-option span {
+    width: 50%;
+}
+
+.settings-option select {
+    flex-grow: 1;
+    text-align: center;
+    background: inherit;
+    transition: inherit;
+    border: 1px solid var(--ui-border-strong);
+    border-radius: 8px;
+}
+
+.settings-option select option{
+    background-color: var(--ui-panel);
+}
 
 @media (max-width: 768px){
     .editor{
@@ -484,9 +500,14 @@ padding: 10px;
     </div>
 
     <div class="settings-content">
-        <div class="settings-option">Setting 1</div>
-        <div class="settings-option">Setting 2</div>
-        <div class="settings-option">Coming soon...</div>
+        <div class="settings-option" data-setting="formatToolbarPosition">
+            <span>Format Toolbar Position</span>
+                <select id="format-toolbar-position">
+                    <option value="auto">Auto</option>
+                    <option value="top">Top</option>
+                    <option value="bottom">Bottom</option>
+                </select>
+        </div>
     </div>
 </div>
 
@@ -794,7 +815,14 @@ const settingsOverlay = document.querySelector(".overlay");
 const settingsClose = document.getElementById("settings-close");
 
 
-const settings = {};
+const settings = {
+  formatToolbarPosition: "auto"
+};
+
+const settingOptions = {
+  formatToolbarPosition: ["auto", "top", "bottom"]
+};
+
 let settingsOpen = false;
 
 function openSettings() {
@@ -836,6 +864,52 @@ document.addEventListener("keydown", (event) => {
         closeSettings();
     }
 });
+
+function settingManager(setting, value) {
+    if (!settingOptions[setting]?.includes(value)) return;
+
+    settings[setting] = value;
+
+    if (setting === "formatToolbarPosition") {
+        setFormatToolbarPosition(value);
+    }
+}
+
+
+function detectFormatToolbarPosition() {
+    return navigator.maxTouchPoints > 0 ? "bottom" : "top";
+}
+
+function setFormatToolbarPosition(position) {
+    if (position === "auto") {
+        position = detectFormatToolbarPosition();
+    }
+
+    const formatToolbar = document.getElementById("format-toolbar");
+    const editor = document.getElementById("editor");
+    const toolbar = document.getElementById("toolbar");
+    const fontFamily = document.querySelector(".font-family");
+    const counterBox = document.getElementById("counter-box");
+
+    if (position === "bottom") {
+        editor.style.order = "1";
+        formatToolbar.style.order = "2";
+        toolbar.style.order = "3";
+    } else {
+        formatToolbar.style.order = "1";
+        editor.style.order = "2";
+        toolbar.style.order = "3";
+    }
+
+    fontFamily.style.order = "4";
+    counterBox.style.order = "5";
+}
+setFormatToolbarPosition(settings.formatToolbarPosition);
+
+document.getElementById("format-toolbar-position").addEventListener("change", (event) => {
+    settingManager("formatToolbarPosition", event.target.value);
+});
+
 </script>
 
 </body>

@@ -299,7 +299,14 @@ const settingsOverlay = document.querySelector(".overlay");
 const settingsClose = document.getElementById("settings-close");
 
 
-const settings = {};
+const settings = {
+  formatToolbarPosition: "auto"
+};
+
+const settingOptions = {
+  formatToolbarPosition: ["auto", "top", "bottom"]
+};
+
 let settingsOpen = false;
 
 function openSettings() {
@@ -340,4 +347,49 @@ document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && settingsOpen) {
         closeSettings();
     }
+});
+
+function settingManager(setting, value) {
+    if (!settingOptions[setting]?.includes(value)) return;
+
+    settings[setting] = value;
+
+    if (setting === "formatToolbarPosition") {
+        setFormatToolbarPosition(value);
+    }
+}
+
+
+function detectFormatToolbarPosition() {
+    return navigator.maxTouchPoints > 0 ? "bottom" : "top";
+}
+
+function setFormatToolbarPosition(position) {
+    if (position === "auto") {
+        position = detectFormatToolbarPosition();
+    }
+
+    const formatToolbar = document.getElementById("format-toolbar");
+    const editor = document.getElementById("editor");
+    const toolbar = document.getElementById("toolbar");
+    const fontFamily = document.querySelector(".font-family");
+    const counterBox = document.getElementById("counter-box");
+
+    if (position === "bottom") {
+        editor.style.order = "1";
+        formatToolbar.style.order = "2";
+        toolbar.style.order = "3";
+    } else {
+        formatToolbar.style.order = "1";
+        editor.style.order = "2";
+        toolbar.style.order = "3";
+    }
+
+    fontFamily.style.order = "4";
+    counterBox.style.order = "5";
+}
+setFormatToolbarPosition(settings.formatToolbarPosition);
+
+document.getElementById("format-toolbar-position").addEventListener("change", (event) => {
+    settingManager("formatToolbarPosition", event.target.value);
 });

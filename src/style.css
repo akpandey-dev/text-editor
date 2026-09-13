@@ -342,6 +342,22 @@ padding: 10px;
     background-color: var(--ui-accent);
 }
 
+.settings-option span {
+    width: 50%;
+}
+
+.settings-option select {
+    flex-grow: 1;
+    text-align: center;
+    background: inherit;
+    transition: inherit;
+    border: 1px solid var(--ui-border-strong);
+    border-radius: 8px;
+}
+
+.settings-option select option{
+    background-color: var(--ui-panel);
+}
 
 @media (max-width: 768px){
     .editor{

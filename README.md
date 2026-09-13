@@ -27,10 +27,15 @@ Whether you want to jot down notes, experiment with rich-text editing, or explor
 * Tooltip on every component
 * Standalone HTML export
 * Fully client-side and offline-capable
-* Settings 
+* Settings to customize the editor:
+  * Format-Toolbar position
+    * **Auto** - Automatically sets depending on the device
+    * **Bottom** - Enforce to bottom
+    * **Top** - Enforce to top
 
 **Upcoming:**
 * Features in settings
+  * Theme management (dark/light)
 
 ---
 
