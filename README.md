@@ -15,9 +15,9 @@ Whether you want to jot down notes, experiment with rich-text editing, or explor
 ## Features
 
 * Rich-text editing with `contenteditable`
-* Formatting: Bold, Italic, Underline, Mark, Code, Superscript, Subscript, Strikethrough
-* Alignment: Left, Right, Center, Justify
-* Font Controls:
+* **Formatting:** Bold, Italic, Underline, Mark, Code, Superscript, Subscript, Strikethrough
+* **Alignment:** Left, Right, Center, Justify
+* **Font Controls:**
   * Font family selection
   * Text color picker
   * Font size picker
@@ -27,15 +27,24 @@ Whether you want to jot down notes, experiment with rich-text editing, or explor
 * Tooltip on every component
 * Standalone HTML export
 * Fully client-side and offline-capable
-* Settings to customize the editor:
-  * Format-Toolbar position
-    * **Auto** - Automatically sets depending on the device
-    * **Bottom** - Enforce to bottom
-    * **Top** - Enforce to top
+* Settings to customize the editor
 
-**Upcoming:**
-* Features in settings
-  * Theme management (dark/light)
+### Settings
+
+#### Implemented
+  * Format-Toolbar position
+    * **Auto** - Automatically position the toolbar based on the device
+    * **Bottom** - Always position the toolbar at the bottom
+    * **Top** - Always position the toolbar at the top
+  * Theme
+    * **Auto** - Follow the system theme preference
+    * **Light** -  Use the light interface
+    * **Dark** - Use the dark interface
+
+#### Upcoming
+
+* **Editor Features**: Background color selection
+* **Editor Persistence**: Save content to localStorage
 
 ---
 

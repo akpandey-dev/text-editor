@@ -21,6 +21,20 @@
 0 8px 20px rgba(0,0,0,.08);
 }
 
+body.dark-mode{
+  --ui-background: #0b0f12;
+  --ui-panel: #1b2226;
+  --ui-border: #2a3338;
+  --ui-border-strong: #9aa7ad;
+  --ui-accent: #14b8a6;
+  --ui-btn-bg: #263238;
+  --ui-text: #e7eef0;
+  --ui-transparent: rgba(231, 238, 240, 0.12);
+  --ui-shadow:
+    0 2px 4px rgba(0,0,0,.45),
+    0 8px 24px rgba(0,0,0,.65);
+}
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -47,12 +61,12 @@ body{
     }
 
 .heading-container {
-      text-align: left;
-      align-self: center;
-      align-items: center;
-      justify-items: center;
-      margin: 0;
-    }
+    text-align: left;
+    align-self: center;
+    align-items: center;
+    justify-items: center;
+    margin: 0;
+}
 
 .heading-container h1{
     color: var(--ui-text);
@@ -93,6 +107,7 @@ body{
     cursor:pointer;
     border-radius: 8px;
     transition:0.2s ease;
+    color: var(--ui-text);
 }
 
 .toolbar button:hover, .format-toolbar button:hover{
@@ -113,53 +128,60 @@ body{
 }
 
 
-    #counter-box {
-      justify-self: center;
-      align-self: center;
-      display: flex;
-    }
+#counter-box {
+    justify-self: center;
+    align-self: center;
+    display: flex;
+}
 
-    #word-counter {
-      width: 20vw;
-      align-items: baseline;
-      margin-top: 10px;
-      border:1px solid var(--ui-border);
-      background:var(--ui-panel);
-      color:var(--ui-text);
-      text-align: center;
-      margin-right: 1vw;
-      border-radius: 8px;
-    }
+#word-counter {
+    width: 20vw;
+    align-items: baseline;
+    margin-top: 10px;
+    border:1px solid var(--ui-border);
+    background:var(--ui-panel);
+    color:var(--ui-text);
+    text-align: center;
+    margin-right: 1vw;
+    border-radius: 8px;
+}
 
-    #char-counter {
-      width: 20vw;
-      align-items: baseline;
-      margin-top: 10px;
-      border:1px solid var(--ui-border);
-      background:var(--ui-panel);
-      color:var(--ui-text);
-      text-align: center;
-      margin-left: 1vw;
-      border-radius: 8px;
-    }
+#char-counter {
+    width: 20vw;
+    align-items: baseline;
+    margin-top: 10px;
+    border:1px solid var(--ui-border);
+    background:var(--ui-panel);
+    color:var(--ui-text);
+    text-align: center;
+    margin-left: 1vw;
+    border-radius: 8px;
+}
 
-    #charCounter::placeholder {
-      font-size: xx-small;
-    }
+#charCounter::placeholder {
+    font-size: xx-small;
+}
 
-      .font-family {
-      margin: 10px;
-      background-color:var(--ui-panel);
-      border:1px solid var(--ui-border);
-      border-radius: 8px;
-      box-shadow:var(--ui-shadow); 
-      border-style: solid;
-      padding: 3px;
-      text-align: left;
-      align-self: center;
-    }
+.font-family {
+    margin: 10px;
+    background-color:var(--ui-panel);
+    border:1px solid var(--ui-border);
+    border-radius: 8px;
+    box-shadow:var(--ui-shadow); 
+    border-style: solid;
+    padding: 3px;
+    text-align: left;
+    align-self: center;
+    color: var(--ui-text);
+}
 
-    #download-button{
+.font-family select {
+    background-color: var(--ui-panel);
+    border-color: var(--ui-border);
+    color: var(--ui-text);
+}
+
+#download-button{
     position: fixed;
     bottom: 6px;
     right: 6px;
@@ -175,7 +197,7 @@ body{
 }
 
 #download-button:hover{
-padding: 10px;
+    padding: 10px;
 }
 
 
@@ -187,7 +209,7 @@ padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 30px;
-    z-index: 9999;
+    z-index: 9997;
     padding: 0px;
     margin: 0 0.3rem;
 }
@@ -201,17 +223,13 @@ padding: 10px;
 }
 
 
-    #font-color-changer {
-      border-radius: 50%;
-      width: 20px;
-      height: 40px;
-      border-style: none;
-    }
-
-    
-    #font-size-changer {
-      transform: rotate(180deg);
-    }
+#font-color-changer {
+    border-radius: 50%;
+    width: 20px;
+    height: 40px;
+    border-style: none;
+    transform: rotate(180deg);
+}
 
 #settings-icon {
     position: fixed;
@@ -243,7 +261,7 @@ padding: 10px;
 .overlay {
     position: fixed;
     inset: 0;
-    z-index: 9998;
+    z-index: 9997;
     background: var(--ui-transparent);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
@@ -271,7 +289,7 @@ padding: 10px;
     border: 1px solid var(--ui-border);
     border-radius: 14px;
     box-shadow: 2px 4px 8px var(--ui-shadow);
-    z-index: 9999;
+    z-index: 9998;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
@@ -330,6 +348,7 @@ padding: 10px;
     width: 100%;
     padding: 2px;
     gap: 2px;
+    color: var(--ui-text);
 }
 
 .settings-option{
@@ -338,11 +357,13 @@ padding: 10px;
     align-items: center;
     justify-content: start;
     width: 100%;
-    height: 32px;
+    height: auto;
     padding: 2px;
     border: 1px solid var(--ui-panel);
     transition: 0.3s ease-in-out;
     border-radius: 8px;
+    font-size: clamp(0.8rem, 1vw, 1rem);
+    color: var(--ui-text);
 }
 
 .settings-option:hover{
@@ -361,10 +382,11 @@ padding: 10px;
     transition: inherit;
     border: 1px solid var(--ui-border-strong);
     border-radius: 8px;
-}
+    color: var(--ui-text);}
 
 .settings-option select option{
     background-color: var(--ui-panel);
+    color: var(--ui-text);
 }
 
 @media (max-width: 768px){
@@ -506,6 +528,14 @@ padding: 10px;
                     <option value="auto">Auto</option>
                     <option value="top">Top</option>
                     <option value="bottom">Bottom</option>
+                </select>
+        </div>
+        <div class="settings-option" data-setting="theme">
+            <span>Theme</span>
+                <select id="theme">
+                    <option value="auto">Auto</option>
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
                 </select>
         </div>
     </div>
@@ -816,11 +846,13 @@ const settingsClose = document.getElementById("settings-close");
 
 
 const settings = {
-  formatToolbarPosition: "auto"
+  formatToolbarPosition: "auto",
+  theme: "auto"
 };
 
 const settingOptions = {
-  formatToolbarPosition: ["auto", "top", "bottom"]
+  formatToolbarPosition: ["auto", "top", "bottom"],
+  theme: ["auto", "light", "dark"]
 };
 
 let settingsOpen = false;
@@ -873,12 +905,22 @@ function settingManager(setting, value) {
     if (setting === "formatToolbarPosition") {
         setFormatToolbarPosition(value);
     }
+    if (setting === "theme") {
+        setTheme(value);
+    }
 }
 
-
+// Helpers and utilities
+ 
 function detectFormatToolbarPosition() {
     return navigator.maxTouchPoints > 0 ? "bottom" : "top";
 }
+
+function getPreferredTheme() {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+
+// Setting functions
 
 function setFormatToolbarPosition(position) {
     if (position === "auto") {
@@ -906,9 +948,24 @@ function setFormatToolbarPosition(position) {
 }
 setFormatToolbarPosition(settings.formatToolbarPosition);
 
+function setTheme(theme) {
+    const dark = theme === "auto"
+        ? window.matchMedia("(prefers-color-scheme: dark)").matches
+        : theme === "dark";
+
+    document.body.classList.toggle("dark-mode", dark);
+}
+setTheme(settings.theme);
+
+// Settings listeners
+
 document.getElementById("format-toolbar-position").addEventListener("change", (event) => {
     settingManager("formatToolbarPosition", event.target.value);
 });
+
+document.getElementById("theme").addEventListener("change", (event) => {
+    settingManager("theme", event.target.value);  
+})
 
 </script>
 

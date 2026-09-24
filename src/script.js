@@ -300,11 +300,13 @@ const settingsClose = document.getElementById("settings-close");
 
 
 const settings = {
-  formatToolbarPosition: "auto"
+  formatToolbarPosition: "auto",
+  theme: "auto"
 };
 
 const settingOptions = {
-  formatToolbarPosition: ["auto", "top", "bottom"]
+  formatToolbarPosition: ["auto", "top", "bottom"],
+  theme: ["auto", "light", "dark"]
 };
 
 let settingsOpen = false;
@@ -357,12 +359,22 @@ function settingManager(setting, value) {
     if (setting === "formatToolbarPosition") {
         setFormatToolbarPosition(value);
     }
+    if (setting === "theme") {
+        setTheme(value);
+    }
 }
 
-
+// Helpers and utilities
+ 
 function detectFormatToolbarPosition() {
     return navigator.maxTouchPoints > 0 ? "bottom" : "top";
 }
+
+function getPreferredTheme() {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+
+// Setting functions
 
 function setFormatToolbarPosition(position) {
     if (position === "auto") {
@@ -390,6 +402,21 @@ function setFormatToolbarPosition(position) {
 }
 setFormatToolbarPosition(settings.formatToolbarPosition);
 
+function setTheme(theme) {
+    const dark = theme === "auto"
+        ? window.matchMedia("(prefers-color-scheme: dark)").matches
+        : theme === "dark";
+
+    document.body.classList.toggle("dark-mode", dark);
+}
+setTheme(settings.theme);
+
+// Settings listeners
+
 document.getElementById("format-toolbar-position").addEventListener("change", (event) => {
     settingManager("formatToolbarPosition", event.target.value);
 });
+
+document.getElementById("theme").addEventListener("change", (event) => {
+    settingManager("theme", event.target.value);  
+})
