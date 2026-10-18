@@ -64,6 +64,18 @@ body{
     color: var(--ui-text);
 }
 
+.icon {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.format-toolbar button > * {
+    line-height: 1;
+    vertical-align: middle;
+}
+
 .format-toolbar, .toolbar{
     width:100%;
     justify-items: center;
@@ -183,13 +195,13 @@ body{
     background-color: var(--ui-accent);
     box-shadow:var(--ui-shadow);
     cursor:pointer;
-    padding: 5px;
+    padding: 4px 8px;
     border-bottom-right-radius: 0;
     transition: 0.2s ease-in-out;
 }
 
 #download-button:hover{
-    padding: 10px;
+    padding:6px 10px;
 }
 
 

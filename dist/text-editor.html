@@ -72,6 +72,18 @@ body{
     color: var(--ui-text);
 }
 
+.icon {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.format-toolbar button > * {
+    line-height: 1;
+    vertical-align: middle;
+}
+
 .format-toolbar, .toolbar{
     width:100%;
     justify-items: center;
@@ -191,13 +203,13 @@ body{
     background-color: var(--ui-accent);
     box-shadow:var(--ui-shadow);
     cursor:pointer;
-    padding: 5px;
+    padding: 4px 8px;
     border-bottom-right-radius: 0;
     transition: 0.2s ease-in-out;
 }
 
 #download-button:hover{
-    padding: 10px;
+    padding:6px 10px;
 }
 
 
@@ -468,14 +480,71 @@ body{
 
 <div class="toolbar" id="toolbar" title="Toolbar">
     <div class="toolbar-options" id="toolbar-options">
-        <button type="button" onclick="rightAlign()" title="Right Align">➡️</button>
-        <button type="button" onclick="leftAlign()" title="Left Align">⬅️</button>
-        <button type="button" onclick="centerAlign()" title="Center Align">⬆️</button>
-        <button type="button" onclick="justify()" title="Justify">⬇️</button>
-        <button type="button" onclick="lineBreak()" title="Line Break">↩️</button>
-        <button type="button" onclick="clearFormat()" title="Clear Formatting">✖️</button>
-        <button type="button" onclick="clearEditor()" title="Clear Editor">❌</button>
-        <button type="button" onclick="backSpaceFun()" title="Backspace">⌫</button>
+        <button type="button" onclick="leftAlign()" title="Left Align">
+<!-- align-left.svg -->
+<svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <rect x="3" y="4" width="18" height="2" />
+  <rect x="3" y="9" width="12" height="2" />
+  <rect x="3" y="14" width="20" height="2" />
+  <rect x="3" y="19" width="14" height="2" />
+</svg>
+</button>
+        <button type="button" onclick="rightAlign()" title="Right Align">
+<!-- align-right.svg -->
+<svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <rect x="3" y="4" width="18" height="2" />
+  <rect x="9" y="9" width="12" height="2" />
+  <rect x="1" y="14" width="20" height="2" />
+  <rect x="7" y="19" width="14" height="2" />
+</svg>
+</button>
+        <button type="button" onclick="centerAlign()" title="Center Align">
+<!-- align-center.svg -->
+<svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <rect x="3" y="4" width="18" height="2" />
+  <rect x="6" y="9" width="12" height="2" />
+  <rect x="2" y="14" width="20" height="2" />
+  <rect x="5" y="19" width="14" height="2" />
+</svg>
+</button>
+        <button type="button" onclick="justify()" title="Justify">
+<!-- justify.svg -->
+<svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <rect x="3" y="4" width="18" height="2" />
+  <rect x="3" y="9" width="18" height="2" />
+  <rect x="3" y="14" width="18" height="2" />
+  <rect x="3" y="19" width="18" height="2" />
+</svg>
+</button>
+        <button type="button" onclick="lineBreak()" title="Line Break">
+<!-- line-break.svg -->
+<svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M20 6v6a4 4 0 01-4 4H4m4-4L4 16l4 4" />
+</svg>
+</button>
+        <button type="button" onclick="clearFormat()" title="Clear Formatting">
+<!-- clear-formatting.svg -->
+<svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M2.1 13.5 6.2 2.7C6.4 2.2 6.7 2 7.1 2s.7.2.9.7l4.1 10.8c.1.2.1.4-.1.6-.2.2-.4.2-.7.2-.4 0-.6-.2-.8-.6L9.4 10H4.7l-1.1 3.7c-.1.4-.4.6-.8.6-.3 0-.5-.1-.7-.3-.1-.1-.1-.3 0-.5ZM5.2 8.5h3.7L7.1 3.8 5.2 8.5Z"/>
+  <path d="M13 12.8V2.8c0-.5.2-.8.7-.8s.7.3.7.8v3.8c.6-.8 1.4-1.2 2.5-1.2 2.3 0 3.8 1.8 3.8 4.3 0 .3 0 .5-.1.8l-1.5-1.5c-.1-1.4-.9-2.2-2.2-2.2-1.4 0-2.4 1.1-2.4 2.7v3.3H13Z"/>
+  <path d="m20.9 12.1 1 1a1.7 1.7 0 0 1 0 2.4l-6.5 6.5h-1.5a2 2 0 0 1-1.4-.6l-2.4-2.4a2 2 0 0 1 0-2.8l6.5-6.5a1.7 1.7 0 0 1 2.4 0l.5.5-1.1 1.1-.5-.5a.2.2 0 0 0-.2 0l-6.5 6.5a.5.5 0 0 0 0 .6l2.4 2.4a.5.5 0 0 0 .3.1h.9l6.1-6.1a.2.2 0 0 0 0-.2l-1-1 1-1Z"/>
+</svg>
+</button>
+        <button type="button" onclick="clearEditor()" title="Clear Editor">
+<!-- clear-editor.svg -->
+<svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+  <polyline points="14 2 14 8 20 8" />
+  <line x1="9" y1="11" x2="15" y2="17" />
+  <line x1="15" y1="11" x2="9" y2="17" />
+</svg>
+</button>
+        <button type="button" onclick="backSpaceFun()" title="Backspace">
+<!-- backspace.svg -->
+<svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M10 6L4 12l6 6h10a1 1 0 001-1V7a1 1 0 00-1-1H10zM12 10l4 4M16 10l-4 4" />
+</svg>
+</button>
     </div>
 </div>
 
@@ -508,11 +577,22 @@ body{
     <input type="range" title="Font Size" class="font-size-changer" placeholder="Font Size" min="8" max="72" value="16" step="1" id="font-size-changer" />
   </div>
 
-<button id="download-button" onclick="saveFile()" title="Download as HTML">💾</button>
+<button id="download-button" onclick="saveFile()" title="Download as HTML">
+<!-- download.svg -->
+<svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M17 17H17.01M17.4 14H18C18.9319 14 19.3978 14 19.7654 14.1522C20.2554 14.3552 20.6448 14.7446 20.8478 15.2346C21 15.6022 21 16.0681 21 17C21 17.9319 21 18.3978 20.8478 18.7654C20.6448 19.2554 20.2554 19.6448 19.7654 19.8478C19.3978 20 18.9319 20 18 20H6C5.06812 20 4.60218 20 4.23463 19.8478C3.74458 19.6448 3.35523 19.2554 3.15224 18.7654C3 18.3978 3 17.9319 3 17C3 16.0681 3 15.6022 3.15224 15.2346C3.35523 14.7446 3.74458 14.3552 4.23463 14.1522C4.60218 14 5.06812 14 6 14H6.6M12 15V4M12 15L9 12M12 15L15 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</button>
 
 
 <button type="button" title="Settings" id="settings-icon" aria-label="Settings" aria-expanded="false" aria-controls="settings-panel">
-    ⚙️
+    
+<!-- settings.svg -->
+<svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M14 21H10L9.44904 18.5206C8.7879 18.2618 8.17573 17.9053 7.63028 17.4689L5.20573 18.232L3.20573 14.7679L5.07828 13.0503C5.02673 12.7077 5 12.357 5 12C5 11.643 5.02673 11.2923 5.07828 10.9496L3.20573 9.23204L5.20574 5.76794L7.6303 6.53106C8.17575 6.09467 8.78791 5.73819 9.44904 5.47935L10 3H14L14.551 5.47935C15.2121 5.73819 15.8242 6.09466 16.3697 6.53104L18.7942 5.76794L20.7942 9.23204L18.9217 10.9496C18.9733 11.2922 19 11.643 19 12C19 12.357 18.9733 12.7078 18.9217 13.0504L20.7942 14.7679L18.7942 18.232L16.3697 17.4689C15.8243 17.9053 15.2121 18.2618 14.551 18.5206L14 21Z"/>
+  <circle cx="12" cy="12" r="3"/>
+</svg>
+
 </button>
 <div class="overlay"></div>
 <div class="settings-panel">

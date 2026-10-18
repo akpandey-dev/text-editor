@@ -1,0 +1,4 @@
+<!-- backspace.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M10 6L4 12l6 6h10a1 1 0 001-1V7a1 1 0 00-1-1H10zM12 10l4 4M16 10l-4 4" />
+</svg>

@@ -33,14 +33,14 @@
 
 <div class="toolbar" id="toolbar" title="Toolbar">
     <div class="toolbar-options" id="toolbar-options">
-        <button type="button" onclick="rightAlign()" title="Right Align">➡️</button>
-        <button type="button" onclick="leftAlign()" title="Left Align">⬅️</button>
-        <button type="button" onclick="centerAlign()" title="Center Align">⬆️</button>
-        <button type="button" onclick="justify()" title="Justify">⬇️</button>
-        <button type="button" onclick="lineBreak()" title="Line Break">↩️</button>
-        <button type="button" onclick="clearFormat()" title="Clear Formatting">✖️</button>
-        <button type="button" onclick="clearEditor()" title="Clear Editor">❌</button>
-        <button type="button" onclick="backSpaceFun()" title="Backspace">⌫</button>
+        <button type="button" onclick="leftAlign()" title="Left Align"><img class="icon" src="assets/icons/align-left.svg"></button>
+        <button type="button" onclick="rightAlign()" title="Right Align"><img class="icon" src="assets/icons/align-right.svg"></button>
+        <button type="button" onclick="centerAlign()" title="Center Align"><img class="icon" src="assets/icons/align-center.svg"></button>
+        <button type="button" onclick="justify()" title="Justify"><img class="icon" src="assets/icons/justify.svg"></button>
+        <button type="button" onclick="lineBreak()" title="Line Break"><img class="icon" src="assets/icons/line-break.svg"></button>
+        <button type="button" onclick="clearFormat()" title="Clear Formatting"><img class="icon" src="assets/icons/clear-formatting.svg"></button>
+        <button type="button" onclick="clearEditor()" title="Clear Editor"><img class="icon" src="assets/icons/clear-editor.svg"></button>
+        <button type="button" onclick="backSpaceFun()" title="Backspace"><img class="icon" src="assets/icons/backspace.svg"></button>
     </div>
 </div>
 
@@ -73,11 +73,11 @@
     <input type="range" title="Font Size" class="font-size-changer" placeholder="Font Size" min="8" max="72" value="16" step="1" id="font-size-changer" />
   </div>
 
-<button id="download-button" onclick="saveFile()" title="Download as HTML">💾</button>
+<button id="download-button" onclick="saveFile()" title="Download as HTML"><img class="icon" src="assets/icons/download.svg"></button>
 
 
 <button type="button" title="Settings" id="settings-icon" aria-label="Settings" aria-expanded="false" aria-controls="settings-panel">
-    ⚙️
+    <img class="icon" src="assets/icons/settings.svg">
 </button>
 <div class="overlay"></div>
 <div class="settings-panel">
