@@ -168,15 +168,35 @@ function format(tagName) {
 }
  }
 
-function clearFormat(){
+function clearFormat() {
+    const selection = window.getSelection();
+
+    if (selection && selection.rangeCount > 0 && !selection.isCollapsed) {
+        const range = selection.getRangeAt(0);
+        const selectedText = range.extractContents();
+
+        const container = document.createElement("div");
+        container.appendChild(selectedText);
+
+        container.innerHTML = container.innerHTML
+            .replace(/<\/?(b|i|u|s|code|mark|sup|sub|span)(\s[^>]*)?>/gi, "");
+
+        range.insertNode(document.createRange().createContextualFragment(container.innerHTML));
+        selection.removeAllRanges();
+} else {
+    editor.focus();
+    document.execCommand("selectAll", false, null);
     document.execCommand("removeFormat", false, null);
 
     editor.innerHTML = editor.innerHTML
-    .replace(/<(\/)?(b|i|u|s|code|mark|sup|sub|span)>/gi, '');  // Fallback safety for tags like mark
-    editor.style.textAlign = "left" ;
+        .replace(/<\/?(b|i|u|s|code|mark|sup|sub|span)(\s[^>]*)?>/gi, "");
+
+    editor.style.textAlign = "left";
     editor.style.fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`;
+Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`;
+
     document.getElementById("fontFamily").value = "inherit";
+}
 }
 
 function clearEditor(){
