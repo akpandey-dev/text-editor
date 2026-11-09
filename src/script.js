@@ -20,6 +20,19 @@ editor.addEventListener('input', ()=>{
     counters();
 });
 
+let colorPickerTarget = null;
+const colorPicker = document.getElementById("color-picker");
+
+function invokeBackgroundColorPicker() {
+    colorPickerTarget = "background";
+    colorPicker.click();
+}
+
+function invokeFontColorPicker() {
+    colorPickerTarget = "font";
+    colorPicker.click();
+}
+
 function updateToolbarLayout(el) {
     if (el.scrollWidth > el.clientWidth) {
         el.style.justifyContent = "flex-start";
@@ -82,37 +95,6 @@ document.getElementById("fontFamily").addEventListener("change", function () {
   }
 });
 
-document.getElementById("font-color-changer").addEventListener("input", function () {
-  const clr = this.value;
-  const ed = editor;
-  const sel = window.getSelection();
-  ed.focus();
-
-  if (sel.rangeCount > 0 && !sel.isCollapsed) {
-    const rng = sel.getRangeAt(0);
-    const frag = rng.extractContents();
-
-    const sp = document.createElement("span");
-    sp.style.color = clr;
-    sp.appendChild(frag);
-
-    rng.insertNode(sp);
-    sel.removeAllRanges();
-  } else {
-     ed.querySelectorAll('[style]').forEach(el => {
-    el.style.removeProperty("color");
-    if (el.getAttribute("style")?.trim() === "") el.removeAttribute("style");
-  });
-
-  const span = document.createElement("span");
-  span.style.color = clr;
-  span.innerHTML = ed.innerHTML;
-  ed.innerHTML = "";
-  ed.appendChild(span);
-  ed.focus();
-  }
-});
-
 document.getElementById("font-size-changer").addEventListener("input", function () {
   const clr = this.value + "px";
   const ed = editor;
@@ -143,6 +125,46 @@ document.getElementById("font-size-changer").addEventListener("input", function 
   ed.focus();
   }
 });
+
+colorPicker.addEventListener("input", function () {
+    const clr = this.value;
+
+    if (colorPickerTarget === "background") {
+        editor.style.backgroundColor = clr;
+        document.getElementById("bg-color-changer").style.backgroundColor = clr;
+    } else if (colorPickerTarget === "font") {
+        const ed = editor;
+        const sel = window.getSelection();
+        ed.focus();
+
+        if (sel.rangeCount > 0 && !sel.isCollapsed) {
+            const rng = sel.getRangeAt(0);
+            const frag = rng.extractContents();
+ 
+            const sp = document.createElement("span");
+            sp.style.color = clr;
+            sp.appendChild(frag);
+
+            rng.insertNode(sp);
+            sel.removeAllRanges();
+        } else {
+            ed.querySelectorAll('[style]').forEach(el => {
+            el.style.removeProperty("color");
+        if (el.getAttribute("style")?.trim() === "") el.removeAttribute("style");
+        });
+
+        const span = document.createElement("span");
+        span.style.color = clr;
+        span.innerHTML = ed.innerHTML;
+        ed.innerHTML = "";
+        ed.appendChild(span);
+        ed.focus();
+
+        document.getElementById("font-color-changer").style.color = clr;
+    }
+}
+});
+
 
 function format(tagName) {
   const selection = window.getSelection();
@@ -192,10 +214,13 @@ function clearFormat() {
         .replace(/<\/?(b|i|u|s|code|mark|sup|sub|span)(\s[^>]*)?>/gi, "");
 
     editor.style.textAlign = "left";
+    editor.style.backgroundColor = '';
     editor.style.fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI",
 Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`;
 
     document.getElementById("fontFamily").value = "inherit";
+    document.getElementById("font-color-changer").style.color = '';
+    document.getElementById("bg-color-changer").style.backgroundColor = '';
 }
 }
 
@@ -298,8 +323,8 @@ function saveFile() {
       </style>
     </head>
     <body>
-        <div style="text-align:${editor.style.textAlign}">
-            ${editor.innerHTML}
+        <div style="text-align:${editor.style.textAlign}; background-color:${editor.style.backgroundColor}; font-family:${editor.style.fontFamily}; font-size:${editor.style.fontSize}; color:${editor.style.color}; min-height: 60vh; width: 100%; padding: 10px; box-sizing: border-box;">
+            ${content}
         </div></body>
     </html>
   `;

@@ -205,7 +205,7 @@ body{
 }
 
 
-.font-control-bar {
+.control-bar {
     position: absolute;
     top: 55%;
     right: 0px;
@@ -218,21 +218,44 @@ body{
     margin: 0 0.3rem;
 }
 
-.font-control-bar input[type="range"],
-.font-control-bar input[type="color"] {
+.control-bar input[type="range"],
+.control-bar input[type="color"] {
     writing-mode: vertical-lr;
-    cursor: pointer;
     border: none;
     outline: none;
 }
 
+#bg-color-changer {
+    border-radius: 8px;
+    width: 20px;
+    aspect-ratio: 1;
+    border: 1px solid var(--ui-border);
+    background-color: var(--ui-panel);
+    cursor: pointer;
+}
 
 #font-color-changer {
-    border-radius: 50%;
+    border-radius: 8px;
     width: 20px;
-    height: 40px;
-    border-style: none;
-    transform: rotate(180deg);
+    aspect-ratio: 1;
+    border: 1px solid var(--ui-border);
+    background-color: var(--ui-panel);
+    color: var(--ui-text);
+    cursor: pointer;
+}
+
+.color-picker {
+    position: relative;
+    height: 0;
+    width: 0;
+}
+
+.font-size-changer {
+    cursor: grab;
+}
+
+.font-size-changer:active {
+    cursor: grabbing;
 }
 
 #settings-icon {

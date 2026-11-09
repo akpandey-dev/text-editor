@@ -45,7 +45,7 @@
 </div>
 
   <div class="font-family">
-    <select title="Select font family" id="fontFamily">
+    <select title="Font Family" id="fontFamily">
       <option value="inherit">Default</option>
       <option value="Arial">Arial</option>
       <option value="Helvetica">Helvetica</option>
@@ -68,8 +68,10 @@
     <input id="char-counter" placeholder="CHARCATERS HERE" title="Character Counter" disabled />
 </div>
 
-  <div class="font-control-bar">
-    <input type="color" title="Font Color" class="font-color-changer" placeholder="Color" id="font-color-changer" />
+  <div class="control-bar">
+    <button type="button" title="Background Color" class="bg-color-changer" id="bg-color-changer" onclick="invokeBackgroundColorPicker()"><span></span></button>
+    <button type="button" title="Font Color" class="font-color-changer" id="font-color-changer" onclick="invokeFontColorPicker()"><span>A</span></button>
+    <input type="color" title="Color Picker" class="color-picker" placeholder="Color" id="color-picker" />
     <input type="range" title="Font Size" class="font-size-changer" placeholder="Font Size" min="8" max="72" value="16" step="1" id="font-size-changer" />
   </div>
 
