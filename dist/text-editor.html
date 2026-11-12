@@ -592,7 +592,7 @@ body{
 
 <div id="counter-box">
     <input id="word-counter" placeholder="WORDS HERE" title="Word Counter" disabled />
-    <input id="char-counter" placeholder="CHARCATERS HERE" title="Character Counter" disabled />
+    <input id="char-counter" placeholder="CHARACTERS HERE" title="Character Counter" disabled />
 </div>
 
   <div class="control-bar">
@@ -878,6 +878,7 @@ Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`;
 function clearEditor(){
     let confirmation = confirm("Are you sure? This can not be undone.")
     if (confirmation){
+      clearFormat();    // Clear formatting already changes all formatting to default
       editor.innerHTML = "";
     }
 }

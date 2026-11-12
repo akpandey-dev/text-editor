@@ -227,6 +227,7 @@ Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`;
 function clearEditor(){
     let confirmation = confirm("Are you sure? This can not be undone.")
     if (confirmation){
+      clearFormat();    // Clear formatting already changes all formatting to default
       editor.innerHTML = "";
     }
 }
